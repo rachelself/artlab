@@ -44,7 +44,7 @@ I want to create a new account.
   * valid if email is not a duplicate
   * valid if email format is an email
   * valid if passwords match
-* Artist is saved to database in the Artist model
+* Artist is saved to database in the User model
 
 ## User authentication (login)
 
