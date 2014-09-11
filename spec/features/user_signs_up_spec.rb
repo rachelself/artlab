@@ -17,33 +17,36 @@
 # * Artist is saved to database in the Artist model
 
 feature "User signs up" do
-  scenario "Successful sign up and subsequent sign in" do
-    visit '/'
-    click_link "Sign Up"
-    current_path.should == new_user_registration_path
-    fill_in "Email", with: "rachel@example.com"
-    fill_in "Password", with: "password!"
-    fill_in "Password Confirmation", with: "password!"
-    click_button "Create Account"
-    current_path.should == user_registration_path
-    page.should have_content("Welcome, rachel@example.com")
-    page.should_not have_content("Sign Up")
-    page.should_not have_content("Sign In")
 
-    click_link "Sign Out"
-    current_path.should == new_user_session_path
+  scenario "Successful sign up and subsequent sign out" do
+    visit '/'
+    click_link "Sign up"
+    expect(current_path).to eq new_user_registration_path
+    Capybara.exact = true
+    fill_in "* Email", with: "rachel@example.com"
+    fill_in "* Password", with: "password!"
+    fill_in "* Password confirmation", with: "password!"
+    Capybara.exact = false
+    click_button "Sign up"
+    expect(page).to have_content("Welcome, rachel@example.com!")
+    expect(page).not_to have_link("Sign up")
+    expect(page).not_to have_link("Sign in")
+
+    user = User.last
+    expect(user.email).to eq "rachel@example.com"
+    click_link "Sign out"
+    click_on "Sign in"
     fill_in "Email", with: "rachel@example.com"
     fill_in "Password", with: "password!"
-    click_button "Sign In"
-    page.should have_content("Welcome back, rachel@example.com")
+    click_on "Sign in"
+    expect(page).to have_content("Welcome, rachel@example.com!")
   end
 
   scenario "Skipped email and password" do
     visit '/'
-    click_link "Sign Up"
-    click_button "Create Account"
-    page.should have_content("Your account could not be created.")
-    page.should have_error("can't be blank", on: "Email")
-    page.should have_error("can't be blank", on: "Password")
+    click_link "Sign up"
+    click_button "Sign up"
+    expect(page).to have_content("Please review the problems below")
+    expect(page).to have_content("can't be blank")
   end
 end
