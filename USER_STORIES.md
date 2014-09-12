@@ -1,11 +1,9 @@
 # User Types
-* Artist: the users who are posting portfolios, ads, and trying to connect with other Artist users.
+* *Artist:* the users who are posting portfolios, ads, and trying to connect with other users to collaborate.
 
 # Features
 * User authentication (create account)
 * User authentication (login)
-* Artist creates an account
-* Artist signs in with email and password
 * Artist resets password (need user story)
 * Edit profile (need user story)
 * Add a new gallery (need user story)

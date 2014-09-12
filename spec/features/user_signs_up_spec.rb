@@ -18,7 +18,7 @@
 
 feature "User signs up" do
 
-  scenario "Successful sign up and subsequent sign out" do
+  scenario "Successful sign up and subsequent sign in" do
     visit '/'
     click_link "Sign up"
     expect(current_path).to eq new_user_registration_path
