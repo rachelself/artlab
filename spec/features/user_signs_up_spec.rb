@@ -47,6 +47,19 @@ feature "User signs up" do
     click_link "Sign up"
     click_button "Sign up"
     expect(page).to have_content("Please review the problems below")
-    expect(page).to have_content("can't be blank")
+    expect(page).to have_error("can't be blank", on: "Email")
+    expect(page).to have_error("can't be blank", on: "Password")
+  end
+
+  scenario "Skipped password confirmation" do
+    visit '/'
+    click_link "Sign up"
+    expect(current_path).to eq new_user_registration_path
+    Capybara.exact = true
+    fill_in "* Email", with: "rachel@example.com"
+    fill_in "* Password", with: "password!"
+    Capybara.exact = false
+    click_button "Sign up"
+    expect(page).to have_error("doesn't match Password", on: "Password confirmation")
   end
 end

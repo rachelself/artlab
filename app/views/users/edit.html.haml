@@ -1,0 +1,7 @@
+%h1= "Edit profile"
+
+= simple_form_for(@user, url: update_profile_path, method: 'patch') do |f|
+  = f.input :first_name,  label: "First Name"
+  = f.input :last_name,   label: "Last Name"
+  = f.input :bio,         label: "Bio",       hint: "Must be less than 500 characters"
+  = f.submit "Save Changes"

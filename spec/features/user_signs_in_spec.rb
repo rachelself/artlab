@@ -43,11 +43,11 @@ feature "User signs in" do
     fill_in "Email", with: "brand_new@example.com"
     fill_in "Password", with: "password!"
     click_on 'Sign in'
-    expect(page).to have_content("We don't have that email address registered in our system.")
     expect(page).not_to have_link("Sign out")
     expect(current_path).to eq new_user_session_path
     expect(field_labeled("Email")[:value]).to include("brand_new@example.com")
     expect(field_labeled("Password")[:value]).to be_blank
+    page.should have_content("We don't have that email address registered in our system.")
   end
 
   scenario "with a blank form" do
@@ -71,6 +71,5 @@ feature "User signs in" do
     expect(current_path).to eq new_user_session_path
     expect(field_labeled("Email")[:value]).to include("bobo@example.com")
     expect(field_labeled("Password")[:value]).to be_blank
-
   end
 end

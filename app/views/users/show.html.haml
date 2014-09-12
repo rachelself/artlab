@@ -1,0 +1,14 @@
+%h1= "Your Profile"
+= link_to "Edit Profile", edit_profile_path
+
+%ul
+  %li
+    = "Email:"
+    = current_user.email
+  %li
+    = "Name:"
+    = current_user.first_name
+    = current_user.last_name
+  %li
+    = "Bio:"
+    = current_user.bio

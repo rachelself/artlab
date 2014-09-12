@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, path: "pr"
   root to: 'welcome#index'
-  get '/dashboard', to: 'users#dashboard'
+  match '/dashboard',      to: 'users#dashboard',     via: 'get'
+  match '/edit_profile',   to: 'users#edit',          via: 'get'
+  match '/update_profile', to: 'users#update',        via: 'patch'
+  match '/profile',        to: 'users#show',          via: 'get'
+
+  resource :user, except: [:destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

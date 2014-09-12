@@ -4,8 +4,8 @@
 # Features
 * User authentication (create account)
 * User authentication (login)
-* Artist resets password (need user story)
-* Edit profile (need user story)
+* User resets password
+* Edit profile
 * Add a new gallery (need user story)
 * Add new items to a gallery (need user story)
 * View items in a gallery (need user story)
@@ -31,9 +31,9 @@ in order to network with other artists,
 I want to create a new account.
 
 ** Usage: **
-1. On home page, click `Sign Up`
-2. Artist enters email, password, and password confirmation
-3. Artist is taken to their profile dashboard
+* On home page, click `Sign Up`
+* Enter email, password, and password confirmation
+* Artist is taken to their profile dashboard
 
 ** Acceptance Criteria: **
 * Artist enters email, password, password confirmation
@@ -51,9 +51,9 @@ I want my credentials to be authenticated
 in order to login to my profile.
 
 ** Usage: **
-1. On home page, click `Sign In`
-2. On modal, artist enters email and password
-3. Click `Sign In`
+* On home page, click `Sign In`
+* Enter email and password
+* Click `Sign In`
 
 ** Acceptance Criteria: **
 * Artist enters email and password
@@ -63,3 +63,39 @@ in order to login to my profile.
   * if an invalid email is provided, an error message will be displayed
   * if an invalid password is provided, an error message will be displayed
 * Artist is taken to profile dashboard
+
+## User resets password
+
+As an artist,
+I want to log back into my account with a new password,
+because I have forgotten the old one.
+
+** Usage: **
+* On home page, click `Sign In`
+* Click `Forgot your password?`
+* Enter email address
+* Click `Send me reset password instructions`
+
+** Acceptance Criteria: **
+* Artist enters valid email
+  * valid email should match an email in the database
+  * if an invalid email is provided, an error message will be displayed
+
+## Edit profile
+
+As an artist,
+I want to add or change information on my profile,
+to better represent my work online.
+
+** Usage: **
+* Sign in
+* On user dashboard, click link `Edit Profile`
+* Enter information for any/all fields
+* Click button `Save`
+
+** Acceptance Criteria: **
+* Artist is currently logged in
+* Artist enters valid input for form fields
+  * valid bio should contain letters
+  * valid location should be correct address formatting (per field)
+  * valid profile photo should have PNG or JPG file extension
