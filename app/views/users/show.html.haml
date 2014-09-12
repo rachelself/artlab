@@ -1,14 +1,18 @@
 %h1= "Your Profile"
 = link_to "Edit Profile", edit_profile_path
 
-%ul
-  %li
-    = "Email:"
-    = current_user.email
-  %li
-    = "Name:"
-    = current_user.first_name
-    = current_user.last_name
-  %li
-    = "Bio:"
-    = current_user.bio
+#profile_info
+  %h4 Profile Picture
+  - if @user.profile_image.present?
+    = image_tag current_user.profile_image.url(:thumb), class: "profile_picture"
+  %ul
+    %li
+      = "Email:"
+      = @user.email
+    %li
+      = "Name:"
+      = @user.first_name
+      = @user.last_name
+    %li
+      = "Bio:"
+      = @user.bio

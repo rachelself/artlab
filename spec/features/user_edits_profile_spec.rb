@@ -40,12 +40,13 @@ feature "User edits their profile" do
     fill_in "Bio", with: "Susanna is interested in a myriad of topics, including photography and painting."
     # select "Photography"
     # check "Painting"
-    # attach_file 'Profile Picture', 'spec/support/data/susanna.jpg'
+    attach_file 'Profile Picture', 'spec/support/data/susanna.jpg'
     click_on "Save Changes"
     expect(page).to have_content("Profile updated successfully.")
     expect(current_path).to eq profile_path
     expect(page).to have_content("Susanna is interested in a myriad of topics, including photography and painting.")
-    # find(".profile_picture")[:src].should include("susanna.jpg")
+    save_and_open_page
+    find(".profile_picture")[:src].should include("susanna.jpg")
   end
 
   scenario "Sucessful, 1 change made" do
@@ -72,6 +73,14 @@ feature "User edits their profile" do
     click_on "Save Changes"
     expect(page).to have_content("Profile could not be updated. Please see below.")
     page.should have_error("must include letters", on: "Bio")
+  end
+
+  scenario "Invalid file type for photo upload" do
+    click_link 'Edit Profile'
+    attach_file 'Profile Picture', 'spec/support/data/susanna.pdf'
+    click_on "Save Changes"
+    expect(page).to have_content('You are not allowed to upload "pdf" files, allowed types: jpg, jpeg, gif, png')
+
   end
 
 
