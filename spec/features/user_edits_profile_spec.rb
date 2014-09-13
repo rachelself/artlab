@@ -45,7 +45,6 @@ feature "User edits their profile" do
     expect(page).to have_content("Profile updated successfully.")
     expect(current_path).to eq profile_path
     expect(page).to have_content("Susanna is interested in a myriad of topics, including photography and painting.")
-    save_and_open_page
     find(".profile_picture")[:src].should include("susanna.jpg")
   end
 
