@@ -1,0 +1,16 @@
+%h1= @gallery.title
+= button_to "Add Photos"
+
+%p You have no photos in this gallery.
+-# - if @gallery.gallery_items.empty?
+-#   %table#gallery{:border => 1}
+-#     %tr
+-#       %td
+-#         %p You have no photos in this gallery.
+-# - else
+-#   %table#gallery{:border => 1}
+-#     %tr
+-#       %p Your pictures!
+      -# - @gallery.gallery_items.each do |gallery_item|
+      -#   %td
+      -#     = image_tag gallery_item.photo.url(:thumb), class: "gallery_item"

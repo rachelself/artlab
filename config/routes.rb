@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   match '/update_profile', to: 'users#update',        via: 'patch'
   match '/profile',        to: 'users#show',          via: 'get'
 
-  resource :user, except: [:destroy]
+  resource :user, except: :destroy
+  resources :galleries, only: [:new, :create, :show]
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
