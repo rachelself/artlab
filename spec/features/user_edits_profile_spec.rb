@@ -71,6 +71,19 @@ feature "User edits their profile" do
     expect(page).not_to have_error("must contain letters", on: "Bio")
   end
 
+  scenario "Successful, old tags dropped" do
+    click_link 'Edit Profile'
+    select("Photography", from: "Tags")
+    click_on "Save Changes"
+    click_link 'Edit Profile'
+    select("Painting", from: "Tags")
+    click_on "Save Changes"
+    expect(page).to have_content("Profile updated successfully.")
+    expect(current_path).to eq profile_path
+    expect(page).to have_content("Painting")
+  end
+
+
   scenario "Unsuccessful, bio contains no letters" do
     click_link 'Edit Profile'
     fill_in "Bio", with: "555-555-5555"

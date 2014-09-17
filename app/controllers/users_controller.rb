@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  # before_action :dump_tags, only: [:update]
-
   def dashboard
     render 'dashboard'
   end
@@ -14,12 +12,7 @@ class UsersController < ApplicationController
 
     user_params = params.require(:user).permit(:first_name, :last_name, :bio, :profile_image, :profile_image_cache)
     tag_params = params.require(:user).require(:tag_ids)
-
-    tag_params.shift
-    tag_params.each do |tag|
-      ArtistTag.create(tag_id: tag, user_id: current_user.id)
-    end
-
+    update_user_tags(tag_params)
 
     if current_user.update_attributes(user_params)
       flash[:notice] = "Profile updated successfully."
@@ -31,14 +24,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_user_tags(tag_params)
+    unless tag_params.empty?
+      dump_tags
+      tag_params.shift
+      tag_params.each do |tag|
+        ArtistTag.create(tag_id: tag, user_id: current_user.id)
+      end
+    end
+  end
+
   def show
     @user = current_user
   end
 
   protected
 
-  # def dump_tags
-  #   @old_tags = ArtistTag.find(user_id: current_user.id)
-  # end
+  def dump_tags
+    @old_tags = current_user.artist_tags
+
+    unless @old_tags.empty?
+      @old_tags.each do |t|
+        t.destroy
+      end
+    end
+  end
 
 end
