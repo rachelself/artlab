@@ -1,0 +1,14 @@
+%h1= @ad.title
+%h5= @ad.description
+%p
+  = image_tag @user.profile_image.url(:small_thumb), class: "ad_creator_image"
+  = "Posted by"
+  = @user.first_name
+  = @user.last_name
+
+- if @ad.project_photo.present?
+  = image_tag @ad.project_photo.url(:thumb), class: "project_photo"
+
+- if @ad.local_only
+  %p Local Only, please
+= button_to "Edit Ad"
