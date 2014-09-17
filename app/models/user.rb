@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 
   has_many :galleries
   has_many :ads
+  has_many :artist_tags
+  has_many :tags, :through => :artist_tags
+  accepts_nested_attributes_for :artist_tags
   mount_uploader :profile_image, ProfileImageUploader
 
   # Include default devise modules. Others available are:

@@ -17,3 +17,10 @@
     %li
       = "Bio:"
       = @user.bio
+    %li
+      = "Tagged as:"
+      - if @user.tags.nil?
+        %p No tags added yet.
+      - else
+        - @user.tags.each do |tag|
+          %p= tag.name

@@ -21,6 +21,8 @@ feature "User edits their profile" do
 
   background do
     @user = Fabricate(:user, email: "susanna@example.com", password: "password!")
+    @tag_painting = Fabricate(:tag, name: "Painting")
+    @tag_photography = Fabricate(:tag, name: "Photography")
     visit '/'
     click_link 'Sign in'
     fill_in "Email", with: "susanna@example.com"
@@ -34,18 +36,21 @@ feature "User edits their profile" do
     expect(page).to have_field("First Name")
     expect(page).to have_field("Last Name")
     expect(page).to have_field("Bio")
-    # expect(page).to have_unchecked_field("Photography")
     fill_in "First Name", with: "Susanna"
     fill_in "Last Name", with: "Jones"
     fill_in "Bio", with: "Susanna is interested in a myriad of topics, including photography and painting."
-    # select "Photography"
-    # check "Painting"
+    select("Photography", from: "Tags")
+    select("Painting", from: "Tags")
     attach_file 'Profile Picture', 'spec/support/data/susanna.jpg'
     click_on "Save Changes"
     expect(page).to have_content("Profile updated successfully.")
     expect(current_path).to eq profile_path
     expect(page).to have_content("Susanna is interested in a myriad of topics, including photography and painting.")
     find(".profile_picture")[:src].should include("susanna.jpg")
+
+    expect(ArtistTag.count).to eq 2
+    expect(page).to have_content("Photography")
+    expect(page).to have_content("Painting")
   end
 
   scenario "Sucessful, 1 change made" do
@@ -79,7 +84,6 @@ feature "User edits their profile" do
     attach_file 'Profile Picture', 'spec/support/data/susanna.pdf'
     click_on "Save Changes"
     expect(page).to have_content('You are not allowed to upload "pdf" files, allowed types: jpg, jpeg, gif, png')
-
   end
 
 

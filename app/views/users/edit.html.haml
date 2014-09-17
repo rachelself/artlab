@@ -8,5 +8,5 @@
   - if current_user.profile_image.present?
     = image_tag(@user.profile_image.url)
   = f.hidden_field :profile_image_cache
-  -# = f.association :tags, as: :select
+  = f.association :tags, as: :select
   = f.submit "Save Changes"
