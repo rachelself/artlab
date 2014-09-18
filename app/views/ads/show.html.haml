@@ -6,9 +6,16 @@
   = @user.first_name
   = @user.last_name
 
-- if @ad.project_photo.present?
-  = image_tag @ad.project_photo.url(:thumb), class: "project_photo"
+.tags
+  %p Tagged as:
+  - if @ad.tags.nil?
+    %p No tags added yet.
+  - else
+    - @ad.tags.each do |tag|
+      %p= tag.name
+  
+= image_tag @ad.project_photo.url(:thumb), class: "project_photo"
 
 - if @ad.local_only
   %p Local Only, please
-= button_to "Edit Ad"
+= link_to "Edit", edit_ad_path

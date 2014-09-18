@@ -6,7 +6,7 @@
   = f.input :bio,         label: "Bio",       hint: "Must be less than 500 characters"
   = f.input :profile_image, label: "Profile Picture"
   - if current_user.profile_image.present?
-    = image_tag(@user.profile_image.url)
+    = image_tag(@user.profile_image.url(:thumb))
   = f.hidden_field :profile_image_cache
   = f.association :tags, as: :select
   = f.submit "Save Changes"

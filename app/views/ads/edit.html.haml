@@ -1,0 +1,13 @@
+%h1= "Edit Your " + @ad.title + " Ad"
+
+= simple_form_for(@ad, method: 'patch', html: { multipart: true }) do |f|
+  = f.input :title
+  = f.input :description, hint: "500 character limit"
+  = f.input :project_photo, label: "Project Photo", as: "file"
+  - if @ad.project_photo.present?
+    = image_tag(@ad.project_photo.url(:thumb))
+    = f.input :remove_project_photo, as: :boolean, checked_value: true, unchecked_value: false
+  = f.hidden_field :project_photo_cache
+  = f.input :local_only, as: :boolean, checked_value: true, unchecked_value: false
+  = f.association :tags, as: :select, label: "What kind of skill are you looking for?"
+  = f.submit "Save Changes"

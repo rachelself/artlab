@@ -30,10 +30,36 @@ class AdsController < ApplicationController
     @user
   end
 
+  def edit
+
+    @ad = Ad.find(params[:id])
+  end
+
+  def update
+    @ad = Ad.find(params[:id])
+
+    if params[:remove_project_photo].present?
+      delete_photo
+    end
+
+    if @ad.update_attributes(ad_params)
+      flash[:notice] = "Your ad was updated successfully."
+      redirect_to ad_path(@ad)
+    else
+      flash.alert = "Your ad could not be updated. See below for errors."
+      render :edit
+    end
+  end
+
   protected
 
+  def delete_photo
+    @ad.remove_project_photo!
+    @ad.save
+  end
+
   def ad_params
-    params.require(:ad).permit(:title, :description, :project_photo, :profile_image_cache, :local_only)
+    params.require(:ad).permit(:title, :description, :project_photo, :project_photo_cache, :local_only, :remove_project_photo)
   end
 
   def tag_params

@@ -8,11 +8,12 @@
 * Edit profile
 * Add a new gallery
 * Add new items to a gallery (in progress)
+* Create a new ad
+* Edit an ad
 * View items in a gallery (need user story)
 * Edit a gallery (need user story)
 * Delete an item from a gallery (need user story)
 * Delete a gallery (need user story)
-* Create a new ad
 * Send a specific artist your ad (need user story)
 * Create a new active collaboration (need user story)
 * View your (ad) invitations (need user story)
@@ -90,7 +91,9 @@ to better represent my work online.
 ** Usage: **
 * Sign in
 * On user dashboard, click link `Edit Profile`
-* Enter information for any/all fields
+* Enter information for any/all fields, including First Name, Last Name, and Bio
+* Select from Tags
+* Attach a Profile Photo file you want to upload
 * Click button `Save`
 
 ** Acceptance Criteria: **
@@ -117,7 +120,7 @@ to keep photos of my work organized and easy to navigate.
 * Artist enters valid input for title
   * valid title must contain letters
 
-## Add gallery items
+## Add photos to a gallery
 
 As an artist,
 I want to add photos to a gallery I've already created,
@@ -152,12 +155,37 @@ so that I can collaborate on a project with another artist.
 * On user dashboard, click link `New Ad`
 * Enter a title, description, select tags, check `local only` (if applicable),
 and upload a photo (optional),
-* Click button `Publish Ad`
+* Click button `Create Ad`
 
 ** Acceptance Criteria: **
 * Artist is currently logged in
 * Artist enters valid input for form fields, including all required
-  * title, description, and tags are required fields
+  * title and description are required fields
+  * valid title must contain letters
+  * valid title must be length < 50
+  * valid description must contain letters
+  * valid description must be length < 500
+  * valid photo file type should be .png, .jpg, .jpeg, or .gif
+
+## Edit an ad
+
+As an artist,
+I want to edit an ad I've already created,
+to better represent the project I want to collaborate on.
+
+** Usage: **
+* Sign in
+* On user dashboard, click link `My Ads`
+* Click a specific ad
+* Click `Edit`
+* Enter or change information for any of the form fields
+* Click button `Create Ad`
+
+** Acceptance Criteria: **
+* Artist is currently logged in
+* Artist is the creator of the ad they want to edit
+* Artist enters valid input for form fields, including all required
+  * title and description are required fields
   * valid title must contain letters
   * valid title must be length < 50
   * valid description must contain letters

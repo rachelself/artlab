@@ -44,7 +44,7 @@ feature "User creates a new ad" do
     click_on "Create Ad"
     expect(page).to have_content("Your ad was successfully published.")
     expect(page).to have_content("Bookmaker seeking paper maker")
-    expect(page).to have_button("Edit Ad")
+    expect(page).to have_link("Edit")
   end
 
   scenario "Successful, ad saved to the database with ALL fields" do
@@ -56,7 +56,7 @@ feature "User creates a new ad" do
     click_on "Create Ad"
     expect(page).to have_content("Your ad was successfully published.")
     expect(page).to have_content("Local Only")
-    expect(page).to have_button("Edit Ad")
+    expect(page).to have_link("Edit")
     find(".project_photo")[:src].should include("book_project_1.jpg")
   end
 

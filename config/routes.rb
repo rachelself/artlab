@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resource :user, except: :destroy
   resources :galleries, only: [:new, :create, :show]
-  resources :ads, only: [:new, :create, :show]
+  resources :ads, except: :destroy
 
 
   # The priority is based upon order of creation: first created -> highest priority.

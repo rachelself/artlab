@@ -3,4 +3,5 @@ Fabricator(:ad) do
   description   "This is a description of my project"
   project_photo ""
   local_only    false
+  user
 end
