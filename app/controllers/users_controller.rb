@@ -9,9 +9,6 @@ class UsersController < ApplicationController
   end
 
   def update
-
-    user_params = params.require(:user).permit(:first_name, :last_name, :bio, :profile_image, :profile_image_cache)
-    tag_params = params.require(:user).require(:tag_ids)
     update_user_tags(tag_params)
 
     if current_user.update_attributes(user_params)
@@ -39,6 +36,14 @@ class UsersController < ApplicationController
   end
 
   protected
+
+  def user_params
+    user_params = params.require(:user).permit(:first_name, :last_name, :bio, :profile_image, :profile_image_cache)
+  end
+
+  def tag_params
+    tag_params = params.require(:user).require(:tag_ids)
+  end
 
   def dump_tags
     @old_tags = current_user.artist_tags
