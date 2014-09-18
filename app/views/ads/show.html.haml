@@ -13,7 +13,7 @@
   - else
     - @ad.tags.each do |tag|
       %p= tag.name
-  
+
 = image_tag @ad.project_photo.url(:thumb), class: "project_photo"
 
 - if @ad.local_only
