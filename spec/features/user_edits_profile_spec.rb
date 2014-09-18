@@ -83,7 +83,6 @@ feature "User edits their profile" do
     expect(page).to have_content("Painting")
   end
 
-
   scenario "Unsuccessful, bio contains no letters" do
     click_link 'Edit Profile'
     fill_in "Bio", with: "555-555-5555"

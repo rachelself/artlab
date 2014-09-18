@@ -3,6 +3,6 @@
   = f.input :title
   = f.input :description, hint: "500 character limit"
   = f.input :project_photo, label: "Project Photo", as: "file"
-  -# = f.hidden_field :project_photo_cache
   = f.input :local_only, as: :boolean, checked_value: true, unchecked_value: false
+  = f.association :tags, as: :select, label: "What kind of skill are you looking for?"
   = f.submit "Create Ad"

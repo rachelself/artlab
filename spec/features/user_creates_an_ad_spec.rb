@@ -25,6 +25,9 @@ feature "User creates a new ad" do
 
   background do
     @user = Fabricate(:user, email: "sally@example.com", password: "password!")
+    @tag_book = Fabricate(:tag, name: "Bookmaking")
+    @tag_paper = Fabricate(:tag, name: "Papermaking")
+    @tag_callig = Fabricate(:tag, name: "Calligraphy")
     visit '/'
     click_link 'Sign in'
     fill_in "Email", with: "sally@example.com"
@@ -36,7 +39,7 @@ feature "User creates a new ad" do
   scenario "Successful, ad saved to the database with minimum required fields" do
     fill_in "Title", with: "Bookmaker seeking paper maker"
     fill_in "Description", with: "I make handmade books and I'm seeking someone with an expertise in fine paper making. I prefer to work with handmade papers that have a bit of tooth to them, like a fine drawing paper, but that are more substantial than any of the Japanese variety."
-    # select "Bookmaking"
+    select("Papermaking", from: "What kind of skill are you looking for?")
     expect(current_path).to eq new_ad_path
     click_on "Create Ad"
     expect(page).to have_content("Your ad was successfully published.")
@@ -47,7 +50,7 @@ feature "User creates a new ad" do
   scenario "Successful, ad saved to the database with ALL fields" do
     fill_in "Title", with: "Bookmaker seeking paper maker"
     fill_in "Description", with: "I make handmade books and I'm seeking someone with an expertise in fine paper making. I prefer to work with handmade papers that have a bit of tooth to them, like a fine drawing paper, but that are more substantial than any of the Japanese variety."
-    # select "Bookmaking"
+    select "Papermaking"
     attach_file "Project Photo", 'spec/support/data/book_project_1.jpg'
     check "ad_local_only"
     click_on "Create Ad"
@@ -59,7 +62,7 @@ feature "User creates a new ad" do
 
   scenario "Unsuccessful, skipped required field" do
     fill_in "Description", with: "I make handmade books and I'm seeking someone with an expertise in fine paper making. I prefer to work with handmade papers that have a bit of tooth to them, like a fine drawing paper, but that are more substantial than any of the Japanese variety."
-    # select "Bookmaking"
+    select "Papermaking"
     click_on "Create Ad"
     expect(page).to have_content("Your ad could not be published. See below for errors.")
     expect(page).to have_error("can't be blank", on: "Title")
@@ -71,7 +74,6 @@ feature "User creates a new ad" do
     expect(page).to have_content("Your ad could not be published. See below for errors.")
     expect(page).to have_error("can't be blank", on: "Title")
     expect(page).to have_error("can't be blank", on: "Description")
-    # expect(page).to have_error("must choose at least one", on: "Tags")
     expect(page).to have_button("Create Ad")
   end
 
