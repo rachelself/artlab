@@ -31,12 +31,12 @@ class AdsController < ApplicationController
   end
 
   def edit
-
     @ad = Ad.find(params[:id])
   end
 
   def update
     @ad = Ad.find(params[:id])
+    update_ad_tags(tag_params)
 
     if params[:remove_project_photo].present?
       delete_photo
@@ -48,6 +48,16 @@ class AdsController < ApplicationController
     else
       flash.alert = "Your ad could not be updated. See below for errors."
       render :edit
+    end
+  end
+
+  def update_ad_tags(tag_params)
+    unless tag_params.empty?
+      dump_tags
+      tag_params.shift
+      tag_params.each do |tag|
+        AdTag.create(tag_id: tag, ad_id: @ad.id)
+      end
     end
   end
 
@@ -63,7 +73,17 @@ class AdsController < ApplicationController
   end
 
   def tag_params
-    params.require(:ad).permit(:tag_ids)
+    tag_params = params.require(:ad).require(:tag_ids)
+  end
+
+  def dump_tags
+    @old_tags = @ad.ad_tags
+
+    unless @old_tags.empty?
+      @old_tags.each do |t|
+        t.destroy
+      end
+    end
   end
 
   def load_ad_creator
