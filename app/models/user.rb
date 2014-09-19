@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   has_many :galleries
+  has_many :photos, :through => :galleries
   has_many :ads
   has_many :artist_tags
   has_many :tags, :through => :artist_tags

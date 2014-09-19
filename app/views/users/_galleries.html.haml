@@ -1,0 +1,7 @@
+%ul
+  - if current_user.galleries.present?
+    - current_user.galleries.each do |gallery|
+      %li
+        = link_to gallery.title, gallery_path(gallery)
+  - else
+    %p You haven't created any galleries yet!

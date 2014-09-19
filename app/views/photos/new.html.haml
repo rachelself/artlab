@@ -1,0 +1,6 @@
+%h1= "New Photos"
+= simple_form_for(@photo, url: photos_path, method: 'post') do |f|
+  = f.input :image, as: "file", multiple: true, required: true
+  = f.input :caption, hint: "30 character limit"
+  = f.association :gallery, collection: Gallery.where(user_id: current_user.id), required: true, as: :select, label: "Which gallery would you like to upload these photos to?"
+  = f.submit "Upload Photos"

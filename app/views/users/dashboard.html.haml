@@ -5,8 +5,6 @@
       = link_to "Sign out", destroy_user_session_path, :method => :delete
       = link_to "Edit Profile", edit_profile_path
       = link_to "View Profile", profile_path
-      = link_to "Create Gallery", new_gallery_path
-      -# = link_to "New Ad", new_ad_path
   - else
     %li
       = link_to "Sign up", new_user_registration_path
@@ -19,3 +17,9 @@
   %h3 My Ads
   = link_to "New Ad", new_ad_path
   =render partial: "users/ads"
+
+.user_galleries
+  %h3 My Galleries
+  = link_to "New Gallery", new_gallery_path
+  = link_to "Upload Photos", new_photo_path
+  =render partial: "users/galleries"

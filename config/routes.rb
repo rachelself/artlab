@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resource :user, except: :destroy
   resources :galleries, only: [:new, :create, :show]
+  resources :photos, only: [:new, :create]
   resources :ads, except: :destroy
 
 
