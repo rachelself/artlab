@@ -1,8 +1,32 @@
-%h1= "New Ad"
-= simple_form_for(@ad, url: ads_path, method: 'post', html: { multipart: true }) do |f|
-  = f.input :title
-  = f.input :description, hint: "500 character limit"
-  = f.input :project_photo, label: "Project Photo", as: "file"
-  = f.input :local_only, as: :boolean, checked_value: true, unchecked_value: false
-  = f.association :tags, as: :select, label: "What kind of skill are you looking for?"
-  = f.submit "Create Ad"
+.row
+  = minimal_form_for(@ad, url: ads_path, method: 'post', html: { multipart: true }) do |f|
+    .row.collapse
+      %h1= "New Ad"
+    .row
+      .large-12.columns
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix Title
+          .small-9.columns
+            = f.input :title
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix Description
+          .small-9.columns
+            = f.input :description, hint: "500 character limit"
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix Project Photo
+          .small-9.columns
+            = f.input :project_photo, as: "file"
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix Local Only?
+          .small-9.columns.local-only
+            = f.input :local_only, as: :radio_buttons
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix Tags
+          .small-9.columns
+            = f.association :tags, collection: Tag.all, required: true, as: :select
+          = f.submit "Create Ad", class: "button radius right"

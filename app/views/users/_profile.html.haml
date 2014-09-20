@@ -1,0 +1,12 @@
+%li.fn= "#{current_user.first_name} #{current_user.last_name}"
+%li.email
+  = "Email: " + current_user.email
+%li
+  = "Bio: " + current_user.bio
+%li
+  = "Tagged: "
+  - if current_user.tags.nil?
+    %p No tags added yet.
+  - else
+    - current_user.tags.each do |tag|
+      = link_to tag.name

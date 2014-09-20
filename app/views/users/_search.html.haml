@@ -1,0 +1,5 @@
+%h1 Users Search
+= simple_form_for :search, url: users_path, method: 'get', id: 'search-form' do |f|
+  -# = f.input :query, :autofocus => true
+  = f.association :tags, as: :select
+  = f.submit "Search", :name => nil

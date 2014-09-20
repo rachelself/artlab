@@ -1,0 +1,54 @@
+%nav.top-bar.show-for-medium-up{ "data-topbar" => "", :role => "navigation" }
+  %ul.title-area
+    %li.name
+      %h1
+        = link_to "Artist Net", root_path, class: "logo"
+  %section.top-bar-section
+    %ul.right
+      - if user_signed_in?
+        %li.active
+          = link_to "Welcome, #{current_user.email}"
+        %li
+          = link_to "Artists"
+        %li
+          = link_to "Projects"
+        %li
+          = link_to "Galleries"
+        %li
+          = link_to "Dashboard", dashboard_path
+        %li
+          = link_to "Sign out", destroy_user_session_path, :method => :delete, class: "button tiny radius right"
+      - else
+        %li.active
+          = link_to "Sign up", new_user_registration_path
+        %li.active
+          = link_to "Sign in", new_user_session_path
+
+%nav.top-bar.expanded.show-for-small-only{ "data-topbar" => "", :role => "navigation" }
+  %ul.title-area
+    %li.name
+      %h1
+        = link_to "Artist Net", root_path, class: "logo"
+    %li.toggle-topbar.menu-icon
+      %a{:href => ""}
+        %span Menu
+  %section.top-bar-section
+    %ul.right.hide-for-large-up
+      - if user_signed_in?
+        %li
+          = link_to "Dashboard", dashboard_path
+        %li
+          = link_to "Sign out", destroy_user_session_path, :method => :delete
+        %li
+          = link_to "View Profile", profile_path
+        %li
+          = link_to "Artists"
+        %li
+          = link_to "Projects"
+        %li
+          = link_to "Galleries"
+      - else
+        %li
+          = link_to "Sign up", new_user_registration_path
+        %li
+          = link_to "Sign in", new_user_session_path

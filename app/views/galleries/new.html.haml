@@ -1,5 +1,17 @@
-%h1= "New Gallery"
-= simple_form_for(@gallery, url: galleries_path, method: 'post') do |f|
-  = f.input :title
-  = f.input :description
-  = f.submit "Create Gallery"
+.row
+  = minimal_form_for(@gallery, url: galleries_path, method: 'post') do |f|
+    .row.collapse
+      %h1= "New Gallery"
+    .row
+      .large-12.columns
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix Title
+          .small-9.columns
+            = f.input :title, placeholder: "Oil Paintings"
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix Description
+          .small-9.columns
+            = f.input :description, placeholder: "About these paintings..."
+          = f.submit "Create Gallery", class: "button radius right"

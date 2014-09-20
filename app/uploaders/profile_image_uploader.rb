@@ -33,11 +33,11 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_and_pad => [280, 280]
+    process :resize_to_fill => [200, 200]
   end
 
   version :small_thumb, :from_version => :thumb do
-    process :resize_and_pad => [40, 40]
+    process :resize_and_pad => [60, 60]
   end
 
 

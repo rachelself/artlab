@@ -1,25 +1,28 @@
-%h1= current_user.email
-.user_nav
-  - if user_signed_in?
-    %li
-      = link_to "Sign out", destroy_user_session_path, :method => :delete
-      = link_to "Edit Profile", edit_profile_path
-      = link_to "View Profile", profile_path
-  - else
-    %li
-      = link_to "Sign up", new_user_registration_path
-    %p
-      = "or"
-    %li
-      = link_to "Sign in", new_user_session_path
+.large-6.medium-6.small-12.columns
+  .user_galleries.panel
+    %h1.subheader My Galleries
+    = link_to "New Gallery", new_gallery_path, class: "button tiny radius right"
+    = link_to "Upload Photos", new_photo_path, class: "button tiny radius right"
+    =render partial: "users/galleries"
+  .user_profile.panel
 
-.user_ads
-  %h3 My Ads
-  = link_to "New Ad", new_ad_path
-  =render partial: "users/ads"
+    %h1.subheader My Profile
+    = link_to "Edit Profile", edit_profile_path, class: "button tiny radius right"
+    = link_to "View Profile", profile_path, class: "button tiny radius right"
+    .row
+      .columns
+        %ul.vcard
+          =render partial: "users/profile"
+        = image_tag current_user.profile_image.url(:thumb), class: "th gallery_photo"
 
-.user_galleries
-  %h3 My Galleries
-  = link_to "New Gallery", new_gallery_path
-  = link_to "Upload Photos", new_photo_path
-  =render partial: "users/galleries"
+.large-6.medium-6.small-12.columns
+  .user_ads.panel.callout.radius.columns
+    %h1.subheader My Ads
+    = link_to "New Ad", new_ad_path, class: "button tiny radius right"
+    =render partial: "users/ads"
+  .user_invitations.panel.callout.radius.columns
+    %h1.subheader My Invitations
+    %p You have no invitations.
+  .user_collaborations.panel.callout.radius.columns
+    %h1.subheader My Collaborations
+    %p You have no active collaborations.

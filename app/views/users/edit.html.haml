@@ -1,12 +1,36 @@
-%h1= "Edit profile"
-
-= simple_form_for(@user, url: update_profile_path, method: 'patch', html: { multipart: true }) do |f|
-  = f.input :first_name,  label: "First Name"
-  = f.input :last_name,   label: "Last Name"
-  = f.input :bio,         label: "Bio",       hint: "Must be less than 500 characters"
-  = f.input :profile_image, label: "Profile Picture"
-  - if current_user.profile_image.present?
-    = image_tag(@user.profile_image.url(:thumb))
-  = f.hidden_field :profile_image_cache
-  = f.association :tags, as: :select
-  = f.submit "Save Changes"
+.row
+  = minimal_form_for(@user, url: update_profile_path, method: 'patch', html: { multipart: true }) do |f|
+    .row.collapse
+      %h1= "Edit Profile"
+    .row
+      .large-12.columns
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix First Name
+          .small-9.columns
+            = f.input :first_name
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix Last Name
+          .small-9.columns
+            = f.input :last_name
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix Bio
+          .small-9.columns
+            = f.input :bio, hint: "Must be less than 500 characters"
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix Profile Picture
+          .small-9.columns
+            = f.input :profile_image, label: "Profile Picture"
+          - if current_user.profile_image.present?
+            = image_tag(@user.profile_image.url(:thumb))
+          = f.hidden_field :profile_image_cache
+        .row.collapse.prefix-radius
+          .small-3.columns
+            %span.prefix Tags
+          .small-9.columns
+            = f.association :tags, collection: Tag.all, required: true, as: :select
+          = f.submit "Save Changes", class: "button radius right"
+          = link_to "Discard Changes", dashboard_path, class: "button radius secondary right"

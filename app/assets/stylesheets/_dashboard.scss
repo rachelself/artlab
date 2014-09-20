@@ -1,0 +1,12 @@
+
+.panel h1{
+  display: inline-block;
+}
+
+.button{
+  margin-left: 0.5em;
+}
+
+.top-bar-section li.active:not(.has-form) a:not(.button){
+  background-color: #555;
+}

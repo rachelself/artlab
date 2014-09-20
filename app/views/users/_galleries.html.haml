@@ -1,7 +1,11 @@
-%ul
-  - if current_user.galleries.present?
-    - current_user.galleries.each do |gallery|
-      %li
-        = link_to gallery.title, gallery_path(gallery)
-  - else
-    %p You haven't created any galleries yet!
+.row
+  .columns.small-12.medium-6.large-10
+    %ul.small-block-grid-3
+      - if current_user.galleries.present?
+        - current_user.galleries.each do |gallery|
+          %li
+            = image_tag Photo.first.image.url(:thumb), class: "th gallery_photo"
+            %h5
+              = link_to gallery.title, gallery_path(gallery)
+      - else
+        %p You haven't created any galleries yet!
