@@ -24,24 +24,28 @@ feature "User edits their profile" do
     @tag_painting = Fabricate(:tag, name: "Painting")
     @tag_photography = Fabricate(:tag, name: "Photography")
     visit '/'
-    click_link 'Sign in'
+    within(".show-for-medium-up") do
+      click_link 'Sign in'
+    end
     fill_in "Email", with: "susanna@example.com"
     fill_in "Password", with: "password!"
-    click_on 'Sign in'
+    within(".form-actions") do
+      click_on 'Sign in'
+    end
+    click_link 'Edit Profile'
   end
 
   scenario "Successful, columns added to database on save (without location)" do
-    click_link 'Edit Profile'
     expect(current_path).to eq edit_profile_path
-    expect(page).to have_field("First Name")
-    expect(page).to have_field("Last Name")
-    expect(page).to have_field("Bio")
-    fill_in "First Name", with: "Susanna"
-    fill_in "Last Name", with: "Jones"
-    fill_in "Bio", with: "Susanna is interested in a myriad of topics, including photography and painting."
-    select("Photography", from: "Tags")
-    select("Painting", from: "Tags")
-    attach_file 'Profile Picture', 'spec/support/data/susanna.jpg'
+    expect(page).to have_field("user_first_name")
+    expect(page).to have_field("user_last_name")
+    expect(page).to have_field("user_bio")
+    fill_in "user_first_name", with: "Susanna"
+    fill_in "user_last_name", with: "Jones"
+    fill_in "user_bio", with: "Susanna is interested in a myriad of topics, including photography and painting."
+    select("Photography", from: "user_tag_ids")
+    select("Painting", from: "user_tag_ids")
+    attach_file 'user_profile_image', 'spec/support/data/susanna.jpg'
     click_on "Save Changes"
     expect(page).to have_content("Profile updated successfully.")
     expect(current_path).to eq profile_path
@@ -54,7 +58,6 @@ feature "User edits their profile" do
   end
 
   scenario "Sucessful, 1 change made" do
-    click_link 'Edit Profile'
     fill_in "Bio", with: "Only modifying this field"
     click_on "Save Changes"
     expect(page).to have_content("Profile updated successfully")
@@ -63,7 +66,6 @@ feature "User edits their profile" do
   end
 
   scenario "Sucessful, no changes made" do
-    click_link 'Edit Profile'
     click_on "Save Changes"
     expect(page).to have_content("Profile updated successfully")
     expect(current_path).to eq profile_path
@@ -72,11 +74,10 @@ feature "User edits their profile" do
   end
 
   scenario "Successful, old tags dropped" do
-    click_link 'Edit Profile'
-    select("Photography", from: "Tags")
+    select("Photography", from: "user_tag_ids")
     click_on "Save Changes"
     click_link 'Edit Profile'
-    select("Painting", from: "Tags")
+    select("Painting", from: "user_tag_ids")
     click_on "Save Changes"
     expect(page).to have_content("Profile updated successfully.")
     expect(current_path).to eq profile_path
@@ -84,19 +85,15 @@ feature "User edits their profile" do
   end
 
   scenario "Unsuccessful, bio contains no letters" do
-    click_link 'Edit Profile'
-    fill_in "Bio", with: "555-555-5555"
+    fill_in "user_bio", with: "555-555-5555"
     click_on "Save Changes"
     expect(page).to have_content("Profile could not be updated. Please see below.")
-    page.should have_error("must include letters", on: "Bio")
+    page.should have_content("must include letters")
   end
 
   scenario "Invalid file type for photo upload" do
-    click_link 'Edit Profile'
-    attach_file 'Profile Picture', 'spec/support/data/susanna.pdf'
+    attach_file 'user_profile_image', 'spec/support/data/susanna.pdf'
     click_on "Save Changes"
     expect(page).to have_content('You are not allowed to upload "pdf" files, allowed types: jpg, jpeg, gif, png')
   end
-
-
 end

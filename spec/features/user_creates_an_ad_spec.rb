@@ -29,17 +29,21 @@ feature "User creates a new ad" do
     @tag_paper = Fabricate(:tag, name: "Papermaking")
     @tag_callig = Fabricate(:tag, name: "Calligraphy")
     visit '/'
-    click_link 'Sign in'
+    within(".show-for-medium-up") do
+      click_link 'Sign in'
+    end
     fill_in "Email", with: "sally@example.com"
     fill_in "Password", with: "password!"
-    click_on 'Sign in'
+    within(".form-actions") do
+      click_on 'Sign in'
+    end
     click_link 'New Ad'
   end
 
   scenario "Successful, ad saved to the database with minimum required fields" do
     fill_in "Title", with: "Bookmaker seeking paper maker"
     fill_in "Description", with: "I make handmade books and I'm seeking someone with an expertise in fine paper making. I prefer to work with handmade papers that have a bit of tooth to them, like a fine drawing paper, but that are more substantial than any of the Japanese variety."
-    select("Papermaking", from: "What kind of skill are you looking for?")
+    select("Papermaking", from: "ad_tag_ids")
     expect(current_path).to eq new_ad_path
     click_on "Create Ad"
     expect(page).to have_content("Your ad was successfully published.")
@@ -50,9 +54,9 @@ feature "User creates a new ad" do
   scenario "Successful, ad saved to the database with ALL fields" do
     fill_in "Title", with: "Bookmaker seeking paper maker"
     fill_in "Description", with: "I make handmade books and I'm seeking someone with an expertise in fine paper making. I prefer to work with handmade papers that have a bit of tooth to them, like a fine drawing paper, but that are more substantial than any of the Japanese variety."
-    select "Papermaking"
-    attach_file "Project Photo", 'spec/support/data/book_project_1.jpg'
-    check "ad_local_only"
+    select("Papermaking", from: "ad_tag_ids")
+    attach_file "ad_project_photo", 'spec/support/data/book_project_1.jpg'
+    choose "ad_local_only_true"
     click_on "Create Ad"
     expect(page).to have_content("Your ad was successfully published.")
     expect(page).to have_content("Local Only")
@@ -62,18 +66,17 @@ feature "User creates a new ad" do
 
   scenario "Unsuccessful, skipped required field" do
     fill_in "Description", with: "I make handmade books and I'm seeking someone with an expertise in fine paper making. I prefer to work with handmade papers that have a bit of tooth to them, like a fine drawing paper, but that are more substantial than any of the Japanese variety."
-    select "Papermaking"
+    select("Papermaking", from: "ad_tag_ids")
     click_on "Create Ad"
     expect(page).to have_content("Your ad could not be published. See below for errors.")
-    expect(page).to have_error("can't be blank", on: "Title")
+    expect(page).to have_content("can't be blank")
     expect(page).to have_button("Create Ad")
   end
 
   scenario "Unsuccessful, blank form" do
     click_on "Create Ad"
     expect(page).to have_content("Your ad could not be published. See below for errors.")
-    expect(page).to have_error("can't be blank", on: "Title")
-    expect(page).to have_error("can't be blank", on: "Description")
+    expect(page).to have_content("can't be blank")
     expect(page).to have_button("Create Ad")
   end
 

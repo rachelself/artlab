@@ -33,17 +33,21 @@ feature "User edits an ad" do
     @ad_tag = Fabricate(:ad_tag, tag_id: @tag, ad_id: @ad2)
 
     visit '/'
-    click_link 'Sign in'
+    within(".show-for-medium-up") do
+      click_link 'Sign in'
+    end
     fill_in "Email", with: "cat@example.com"
     fill_in "Password", with: "password!"
-    click_on 'Sign in'
+    within(".form-actions") do
+      click_on 'Sign in'
+    end
     click_on 'Seeking Fiber artist'
     click_on 'Edit'
   end
 
   scenario "Successful - only required fields" do
     expect(current_path).to eq edit_ad_path(@ad2)
-    expect(page).to have_unchecked_field("ad_local_only")
+    expect(page).to have_checked_field("ad_local_only_false")
     fill_in 'Title', with: "Seeking fibers specialist"
     fill_in 'Description', with: "I'm working on an installation for the opening of the new downtown arts center. Looking for someone to collaborate with to create something awesome!"
     click_on 'Save Changes'
@@ -56,9 +60,9 @@ feature "User edits an ad" do
     expect(current_path).to eq edit_ad_path(@ad2)
     fill_in 'Title', with: "Seeking fibers specialist"
     fill_in 'Description', with: "I'm working on an installation for the opening of the new downtown arts center. Looking for someone to collaborate with to create something awesome!"
-    attach_file 'Project Photo', 'spec/support/data/project_photo_example.jpg'
+    attach_file 'ad_project_photo', 'spec/support/data/project_photo_example.jpg'
     select 'Fibers'
-    check "ad_local_only"
+    choose "ad_local_only_true"
     click_on 'Save Changes'
     expect(page).to have_content("Your ad was updated successfully.")
     expect(page).to have_content("Seeking fibers specialist")
@@ -69,7 +73,7 @@ feature "User edits an ad" do
     expect(page).to have_field("Title", :with => "Seeking fibers specialist")
     expect(page).to have_field("Description", :with => "I'm working on an installation for the opening of the new downtown arts center. Looking for someone to collaborate with to create something awesome!")
     page.has_select?("Tags", :selected => "Fibers")
-    expect(page).to have_checked_field("ad_local_only")
+    expect(page).to have_checked_field("ad_local_only_true")
   end
 
   scenario "Successful - no changes" do
@@ -80,7 +84,7 @@ feature "User edits an ad" do
   end
 
   scenario "Successful - photo is not deleted from record" do
-    attach_file 'Project Photo', 'spec/support/data/project_photo_example.jpg'
+    attach_file 'ad_project_photo', 'spec/support/data/project_photo_example.jpg'
     click_on 'Save Changes'
     click_on 'Edit'
     click_on 'Save Changes'
@@ -99,12 +103,13 @@ feature "User edits an ad" do
   end
 
   scenario "Successful - removes photo" do
-    attach_file 'Project Photo', 'spec/support/data/project_photo_example.jpg'
+    pending "implementation"
+    attach_file 'ad_project_photo', 'spec/support/data/project_photo_example.jpg'
     click_on 'Save Changes'
     click_on 'Edit'
 
     expect(current_path).to eq edit_ad_path(@ad2)
-    check "Remove project photo"
+    check "Remove ad_project_photo"
     click_on "Save Changes"
     expect(page).to have_content("Your ad was updated successfully.")
     find(".project_photo")[:src].should include("default.png")
@@ -116,8 +121,7 @@ feature "User edits an ad" do
     fill_in 'Description', with: ""
     click_on 'Save Changes'
     expect(page).to have_content("Your ad could not be updated. See below for errors.")
-    expect(page).to have_error("can't be blank", on: "Title")
-    expect(page).to have_error("can't be blank", on: "Description")
+    expect(page).to have_content("can't be blank")
   end
 
 end

@@ -18,9 +18,14 @@
 
 feature "User signs up" do
 
-  scenario "Successful sign up and subsequent sign in" do
+  background do
     visit '/'
-    click_link "Sign up"
+    within(".show-for-medium-up") do
+      click_link 'Sign up'
+    end
+  end
+
+  scenario "Successful sign up and subsequent sign in" do
     expect(current_path).to eq new_user_registration_path
     Capybara.exact = true
     fill_in "* Email", with: "rachel@example.com"
@@ -34,17 +39,21 @@ feature "User signs up" do
 
     user = User.last
     expect(user.email).to eq "rachel@example.com"
-    click_link "Sign out"
-    click_on "Sign in"
+    within(".show-for-medium-up") do
+      click_link 'Sign out'
+    end
+    within(".show-for-medium-up") do
+      click_link 'Sign in'
+    end
     fill_in "Email", with: "rachel@example.com"
     fill_in "Password", with: "password!"
-    click_on "Sign in"
+    within(".form-actions") do
+      click_on 'Sign in'
+    end
     expect(page).to have_content("Welcome, rachel@example.com!")
   end
 
   scenario "Skipped email and password" do
-    visit '/'
-    click_link "Sign up"
     click_button "Sign up"
     expect(page).to have_content("Please review the problems below")
     expect(page).to have_error("can't be blank", on: "Email")
@@ -52,8 +61,6 @@ feature "User signs up" do
   end
 
   scenario "Skipped password confirmation" do
-    visit '/'
-    click_link "Sign up"
     expect(current_path).to eq new_user_registration_path
     Capybara.exact = true
     fill_in "* Email", with: "rachel@example.com"

@@ -22,14 +22,18 @@ feature "User signs in" do
 
   background do
     Fabricate(:user, email: "bobo@example.com", password: "password!")
+    visit '/'
+    within(".show-for-medium-up") do
+      click_link 'Sign in'
+    end
   end
 
   scenario "with the correct credentials" do
-    visit '/'
-    click_link 'Sign in'
     fill_in "Email", with: "bobo@example.com"
     fill_in "Password", with: "password!"
-    click_on 'Sign in'
+    within(".form-actions") do
+      click_on 'Sign in'
+    end
     expect(page).to have_content("Welcome, bobo@example.com!")
     expect(page).not_to have_link("Sign up")
     expect(page).not_to have_link("Sign in")
@@ -38,11 +42,11 @@ feature "User signs in" do
   end
 
   scenario "with an email that hasn't been registered" do
-    visit '/'
-    click_link 'Sign in'
     fill_in "Email", with: "brand_new@example.com"
     fill_in "Password", with: "password!"
-    click_on 'Sign in'
+    within(".form-actions") do
+      click_on 'Sign in'
+    end
     expect(page).not_to have_link("Sign out")
     expect(current_path).to eq new_user_session_path
     expect(field_labeled("Email")[:value]).to include("brand_new@example.com")
@@ -51,20 +55,20 @@ feature "User signs in" do
   end
 
   scenario "with a blank form" do
-    visit '/'
-    click_link 'Sign in'
-    click_on 'Sign in'
+    within(".form-actions") do
+      click_on 'Sign in'
+    end
     expect(page).to have_content("Invalid email or password.")
     expect(page).not_to have_link("Sign out")
     expect(current_path).to eq new_user_session_path
   end
 
   scenario "with an incorrect password" do
-    visit '/'
-    click_link 'Sign in'
     fill_in "Email", with: "bobo@example.com"
     fill_in "Password", with: "notmypassword"
-    click_on 'Sign in'
+    within(".form-actions") do
+      click_on 'Sign in'
+    end
     expect(page).not_to have_content("Welcome, bobo@example.com!")
     expect(page).not_to have_link("Sign out")
     expect(page).to have_content("Invalid email or password.")

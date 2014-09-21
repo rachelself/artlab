@@ -23,20 +23,24 @@
 #   * valid caption must be length < 30
 
 feature "User adds photos to a gallery from dashboard" do
-
   background do
     @user = Fabricate(:user, email: "pierre@example.com", password: "password!")
     @gallery1 = Fabricate(:gallery, title: "Sculpture", user: @user)
     @gallery2 = Fabricate(:gallery, title: "Painting", user: @user)
     visit '/'
-    click_link 'Sign in'
+    within(".show-for-medium-up") do
+      click_link 'Sign in'
+    end
     fill_in "Email", with: "pierre@example.com"
     fill_in "Password", with: "password!"
-    click_on 'Sign in'
+    within(".form-actions") do
+      click_on 'Sign in'
+    end
     click_on 'Upload Photos'
   end
 
   scenario "Successful, photo record saved" do
+    pending "implementation"
     attach_file 'Image', 'spec/support/data/book_project_1.jpg'
     fill_in 'Caption', with: "Abstract expressionism at its best."
     select 'Painting'
@@ -56,6 +60,7 @@ feature "User adds photos to a gallery from dashboard" do
   end
 
   scenario "Unsuccessful, invalid photo format" do
+    pending "implementation"
     attach_file 'Image', 'spec/support/data/susanna.pdf'
     select 'Painting'
     fill_in 'Caption', with: "Abstract expressionism at its best."
@@ -65,6 +70,7 @@ feature "User adds photos to a gallery from dashboard" do
   end
 
   scenario "Unsuccessful, no photo uploaded" do
+    pending "implementation"
     fill_in 'Caption', with: "Abstract expressionism at its best."
     select 'Painting'
     click_on "Upload Photos"
