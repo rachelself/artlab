@@ -1,16 +1,17 @@
-describe ProfileImageUploader do
+describe GalleryPhotoUploader do
   include CarrierWave::Test::Matchers
 
   before do
     @user = Fabricate(:user)
-    ProfileImageUploader.enable_processing = true
-    @uploader = ProfileImageUploader.new(@user, :profile_image)
+    @gallery = Fabricate(:gallery)
+    GalleryPhotoUploader.enable_processing = true
+    @uploader = GalleryPhotoUploader.new(@gallery, :image)
     file = File.open('spec/support/data/example_profile_image.png')
     @uploader.store!(file)
   end
 
   after do
-    ProfileImageUploader.enable_processing = false
+    GalleryPhotoUploader.enable_processing = false
     @uploader.remove!
   end
 

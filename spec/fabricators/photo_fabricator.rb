@@ -1,4 +1,5 @@
 Fabricator(:photo) do
-  photo_file ""
+  image ""
   caption    "MyString"
+  gallery
 end
