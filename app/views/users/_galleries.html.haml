@@ -1,10 +1,10 @@
 .row
-  .columns.small-12.medium-6.large-10
-    %ul.small-block-grid-3
-      - if current_user.galleries.present?
-        - current_user.galleries.each do |gallery|
+  .columns.small-12.medium-12.large-12
+    %ul.small-block-grid-2.medium-block-grid-2.large-block-grid-3
+      - if @user.galleries.present?
+        - @user.galleries.each do |gallery|
           %li
-            = image_tag Photo.first.image.url(:thumb), class: "th gallery_photo"
+            -# = image_tag Photo.first.image.url(:thumb), class: "th gallery_photo"
             %h5
               = link_to gallery.title, gallery_path(gallery)
       - else

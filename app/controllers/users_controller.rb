@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def dashboard
+    @user = current_user
     render 'dashboard'
   end
 

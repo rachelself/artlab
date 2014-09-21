@@ -1,16 +1,14 @@
-%h1= @gallery.title
-%p= @gallery.description
-= button_to "Add Photos"
+.row.panel
+  .small-12.medium-12.large-12.columns
+    %h1= @gallery.title
+    %h3.subheader= @gallery.description
+    -# = link_to "Add Photos", class: "button radius right"
 
-- if @gallery.photos.present?
-  %table#gallery{:border => 1}
-    %tr
+  - if @gallery.photos.present?
+    %ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
       - @gallery.photos.each do |photo|
-        %td
-          = image_tag photo.image.url(:thumb), class: "gallery_photo"
-          %p= photo.caption
-- else
-  %table#gallery{:border => 1}
-    %tr
-      %td
-        %p You have no photos in this gallery.
+        %li
+          = image_tag photo.image.url(:thumb), class: "th gallery_photo"
+          %h5.subheader= photo.caption
+  - else
+    %p You haven't added any photos yet!

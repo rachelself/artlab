@@ -30,3 +30,4 @@
           .small-9.columns
             = f.association :tags, collection: Tag.all, required: true, as: :select
           = f.submit "Create Ad", class: "button radius right"
+          = link_to "Discard Changes", dashboard_path, class: "button radius secondary right"

@@ -1,26 +1,34 @@
-%h1= "Your Profile"
-= link_to "Edit Profile", edit_profile_path
-= link_to "Dashboard", dashboard_path
+.row.panel
+  .small-12.medium-4.large-4.columns
+    = image_tag current_user.profile_image.url(:thumb), class: "th profile_picture"
 
-#profile_info
-  %h4 Profile Picture
-  - if @user.profile_image.present?
-    = image_tag current_user.profile_image.url(:thumb), class: "profile_picture"
-  %ul
-    %li
-      = "Email:"
-      = @user.email
-    %li
-      = "Name:"
-      = @user.first_name
-      = @user.last_name
-    %li
-      = "Bio:"
-      = @user.bio
-    %li
-      = "Tagged as:"
-      - if @user.tags.nil?
-        %p No tags added yet.
-      - else
-        - @user.tags.each do |tag|
-          %p= tag.name
+  .small-12.medium-8.large-8.columns
+    - if @user.first_name.nil?
+      %h1= @user.email
+    - else
+      %h1= "#{@user.first_name}" + " #{@user.last_name}"
+    - if current_user.id == @user.id
+      = link_to "Edit Profile", edit_profile_path, class: "button tiny radius right"
+    .row
+      .small-12.medium-12.large-12.columns
+        %h3.small.subheader Bio
+        - if @user.bio.nil?
+          %p You haven't added a bio yet.
+        - else
+          %p= @user.bio
+    .row
+      .small-6.medium-4.large-4.columns
+        %h3.small.subheader Tagged:
+        - if @user.tags.present?
+          - @user.tags.each do |tag|
+            = link_to tag.name
+        - else
+          %p No tags added yet.
+      .small-6.medium-4.large-4.columns
+        %h3.small.subheader Contact Info
+        %p Email: #{@user.email}
+.row
+  =render partial: "users/portfolio"
+
+.row
+  =render partial: "users/open_projects"

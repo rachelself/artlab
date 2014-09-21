@@ -20,3 +20,4 @@
           .small-9.columns
             = f.association :gallery, collection: Gallery.where(user_id: current_user.id), required: true, as: :select
           = f.submit "Upload Photos", class: "button radius right"
+          = link_to "Discard Changes", dashboard_path, class: "button radius secondary right"
