@@ -1,7 +1,10 @@
 =render partial: "users/search"
 
-- @users.each do |user|
-  %h3
-    = user.first_name
-    = user.last_name
-  %p= user.bio
+%hr
+- if @users.nil?
+  %p No users found.
+- else
+  - @users.each do |user|
+    %h3
+      = "#{user.first_name} " + "#{user.last_name}"
+    %p= user.bio

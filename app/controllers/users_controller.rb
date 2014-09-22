@@ -5,6 +5,20 @@ class UsersController < ApplicationController
     render 'dashboard'
   end
 
+  def index
+    if params[:filter].present?
+      @artist_tags = ArtistTag.tagged_with(params[:filter][:tag_id])
+      @users = []
+      @artist_tags.each do |artist_tag|
+        @users << User.find_by(artist_tag.user_id)
+      end
+      @users = @users[0]
+    else
+      @users = User.all
+    end
+    @users
+  end
+
   def edit
     @user = current_user
   end

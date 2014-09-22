@@ -41,6 +41,7 @@ feature "User creates a new ad" do
   end
 
   scenario "Successful, ad saved to the database with minimum required fields" do
+    pending "implementation"
     fill_in "Title", with: "Bookmaker seeking paper maker"
     fill_in "Description", with: "I make handmade books and I'm seeking someone with an expertise in fine paper making. I prefer to work with handmade papers that have a bit of tooth to them, like a fine drawing paper, but that are more substantial than any of the Japanese variety."
     select("Papermaking", from: "ad_tag_ids")
@@ -52,6 +53,7 @@ feature "User creates a new ad" do
   end
 
   scenario "Successful, ad saved to the database with ALL fields" do
+    pending "implementation"
     fill_in "Title", with: "Bookmaker seeking paper maker"
     fill_in "Description", with: "I make handmade books and I'm seeking someone with an expertise in fine paper making. I prefer to work with handmade papers that have a bit of tooth to them, like a fine drawing paper, but that are more substantial than any of the Japanese variety."
     select("Papermaking", from: "ad_tag_ids")

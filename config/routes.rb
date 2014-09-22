@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :galleries, only: [:new, :create, :show]
   resources :photos, only: [:new, :create]
   resources :ads, except: :destroy
-
+  resources :users, only: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
