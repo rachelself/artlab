@@ -40,9 +40,8 @@ feature "User adds photos to a gallery from dashboard" do
   end
 
   scenario "Successful, photo record saved" do
-    pending "implementation"
     attach_file 'Image', 'spec/support/data/book_project_1.jpg'
-    fill_in 'Caption', with: "Abstract expressionism at its best."
+    fill_in 'photo_caption', with: "Abstract expressionism at its best."
     select 'Painting'
     click_on "Upload Photos"
     expect(page).to have_content("Photos uploaded successfully.")
@@ -60,18 +59,16 @@ feature "User adds photos to a gallery from dashboard" do
   end
 
   scenario "Unsuccessful, invalid photo format" do
-    pending "implementation"
     attach_file 'Image', 'spec/support/data/susanna.pdf'
     select 'Painting'
-    fill_in 'Caption', with: "Abstract expressionism at its best."
+    fill_in 'photo_caption', with: "Abstract expressionism at its best."
     click_on "Upload Photos"
     expect(page).to have_content("Photos could not be uploaded. Please see errors below.")
     expect(page).to have_content('You are not allowed to upload "pdf" files, allowed types: jpg, jpeg, gif, png')
   end
 
   scenario "Unsuccessful, no photo uploaded" do
-    pending "implementation"
-    fill_in 'Caption', with: "Abstract expressionism at its best."
+    fill_in 'photo_caption', with: "Abstract expressionism at its best."
     select 'Painting'
     click_on "Upload Photos"
     expect(page).to have_content("Photos could not be uploaded. Please see errors below.")
@@ -81,7 +78,7 @@ feature "User adds photos to a gallery from dashboard" do
   scenario "Unsuccessful, no gallery chosen" do
     pending "implementation"
     attach_file 'Image', 'spec/support/data/book_project_1.jpg'
-    fill_in 'Caption', with: "Abstract expressionism at its best."
+    fill_in 'photo_caption', with: "Abstract expressionism at its best."
     click_on "Upload Photos"
     expect(page).to have_content("Photos could not be uploaded. Please see errors below.")
     expect(page).to have_content("must choose a gallery")
