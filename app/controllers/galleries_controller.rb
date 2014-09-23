@@ -14,6 +14,10 @@ class GalleriesController < ApplicationController
     end
   end
 
+  def index
+    @galleries = Gallery.all
+  end
+
   def show
     @gallery = Gallery.find(params[:id])
   end

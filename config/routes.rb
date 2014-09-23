@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   match '/profile',        to: 'users#show',          via: 'get'
 
   resource :user, except: :destroy
-  resources :galleries, only: [:new, :create, :show]
+  resources :galleries, except: :destroy
   resources :photos, only: [:new, :create]
   resources :ads, except: :destroy
   resources :users, only: [:index]

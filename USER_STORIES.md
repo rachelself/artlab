@@ -15,6 +15,7 @@
 * Filter users by tag
 * View all ads
 * Filter ads by tag
+* View all galleries
 * View items in a gallery (need user story)
 * Edit a gallery (need user story)
 * Delete an item from a gallery (need user story)
@@ -248,3 +249,13 @@ so I can quickly find relevant projects I may want to collaborate on.
 * Click `Projects`
 * Select `Painting` from Tags
 * Click `Search`
+
+## View all galleries
+
+As an artist,
+I want to browse all the galleries,
+to look for inspiring talent.
+
+** Usage: **
+* Sign in
+* On user dashboard, click link `Galleries`

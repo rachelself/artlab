@@ -1,0 +1,17 @@
+%h1 Galleries
+%hr
+- if @galleries.nil?
+  %p No galleries found.
+- else
+  - @galleries.each do |gallery|
+    .gallery
+      - if gallery.photos.present?
+        .cover
+          = image_tag gallery.photos.first.image.url(:thumb), class: "th, gallery-cover"
+        .thumbs
+          - gallery.photos.each do |photo|
+            = image_tag photo.image.url(:small_thumb), class: "th gallery-photo"
+      %h3
+        = gallery.title
+      %h5
+        = gallery.description
