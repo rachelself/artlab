@@ -1,6 +1,7 @@
-%h1 Ads Search
-= form_tag '/ads', id: 'search-form', :method => 'get' do
-  = label_tag :tags
-  = collection_select(:filter, :tag_id, Tag.all, :id, :name)
-  = submit_tag "Search", :name => nil, class: "button radius left"
-= link_to "Clear Filter", ads_path, class: "button radius secondary left"
+.row.panel
+  %h1 Ads Search
+  = form_tag '/ads', id: 'search-form', :method => 'get' do
+    = label_tag :tags
+    = collection_select(:filter, :tag_id, Tag.all, :id, :name)
+    = submit_tag "Search", :name => nil, class: "button radius left"
+  = link_to "Clear Filter", ads_path, class: "button radius secondary left"

@@ -3,9 +3,16 @@
     %ul.small-block-grid-2.medium-block-grid-2.large-block-grid-3
       - if @user.galleries.present?
         - @user.galleries.each do |gallery|
-          %li
-            -# = image_tag Photo.first.image.url(:thumb), class: "th gallery_photo"
-            %h5
-              = link_to gallery.title, gallery_path(gallery)
+          - if gallery.photos.present?
+            %li
+              = image_tag gallery.photos.first.image.url(:thumb), class: "th gallery_photo"
+              %h5
+                = link_to gallery.title, gallery_path(gallery)
+
+          - else
+            %li
+              = image_tag "default.png", class: "th gallery_photo"
+              %h5
+                = link_to gallery.title, gallery_path(gallery)
       - else
         %p You haven't created any galleries yet!

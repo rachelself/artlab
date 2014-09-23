@@ -1,10 +1,21 @@
 =render partial: "users/search"
-
-%hr
-- if @users.nil?
-  %p No users found.
-- else
-  - @users.each do |user|
-    %h3
-      = "#{user.first_name} " + "#{user.last_name}"
-    %p= user.bio
+.row
+  %hr
+  - if @users.nil?
+    %p No users found.
+  - else
+    - @users.each do |user|
+      .user-result.panel
+        = image_tag user.profile_image.url(:small_thumb), class: "th left profile-pic"
+        %h3
+          = "#{user.first_name} " + "#{user.last_name}"
+        %p= user.bio
+        - if user.tags.present?
+          %li.tags
+            %strong= "Tagged: "
+          - user.tags.each do |tag|
+            = link_to "#{tag.name} "
+        - else
+          %li
+            %strong Tagged:
+            = "No tags added yet."

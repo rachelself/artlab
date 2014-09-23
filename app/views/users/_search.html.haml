@@ -1,6 +1,7 @@
-%h1 Users Search
-= form_tag '/users', id: 'search-form', :method => 'get' do
-  = label_tag :tags
-  = collection_select(:filter, :tag_id, Tag.all, :id, :name)
-  = submit_tag "Search", :name => nil, class: "button radius left"
-= link_to "Clear Filter", users_path, class: "button radius secondary left"
+.row.panel
+  %h1 Users Search
+  = form_tag '/users', id: 'search-form', :method => 'get' do
+    = label_tag :filter_by_tag
+    = collection_select(:filter, :tag_id, Tag.all, :id, :name)
+    = submit_tag "Search", :name => nil, class: "button radius left"
+  = link_to "Clear Filter", users_path, class: "button radius secondary left"

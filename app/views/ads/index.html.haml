@@ -1,11 +1,24 @@
 =render partial: "ads/search"
-
-%hr
-- if @ads.nil?
-  %p No ads found.
-- else
-  - @ads.each do |ad|
-    %h3
-      = ad.title
-    %h5
-      = ad.description
+.row
+  %hr
+  - if @ads.nil?
+    %p No ads found.
+  - else
+    - @ads.each do |ad|
+      .ad-result.panel
+        - if ad.project_photo.present?
+          = image_tag ad.project_photo.url(:thumb), class: "th project_photo"
+        %h3
+          = ad.title
+        %h5
+          = ad.description
+        - if ad.tags.present?
+          %li.tags
+            %strong= "Tagged: "
+          - ad.tags.each do |tag|
+            = link_to tag.name
+        - else
+          %p No tags added yet.
+        %p
+          = "Posted:"
+          = ad.created_at.strftime("%m/%d/%Y")
