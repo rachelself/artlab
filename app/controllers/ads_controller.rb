@@ -41,7 +41,8 @@ class AdsController < ApplicationController
 
   def show
     @ad = Ad.find(params[:id])
-    @user
+    @user = current_user
+    # @user = User.find_by(@ad.user_id)
   end
 
   def edit
