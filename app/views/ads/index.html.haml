@@ -1,0 +1,11 @@
+=render partial: "ads/search"
+
+%hr
+- if @ads.nil?
+  %p No ads found.
+- else
+  - @ads.each do |ad|
+    %h3
+      = ad.title
+    %h5
+      = ad.description

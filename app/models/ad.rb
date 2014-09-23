@@ -11,4 +11,9 @@ class Ad < ActiveRecord::Base
   validates_length_of :title, maximum: 50, message: "must be less than 50 characters", allow_blank: true
   validates_format_of :title, :description, with: /[a-zA-Z]/, message: "must include letters", allow_blank: true
   validates_length_of :description, maximum: 500, message: "500 is the maximum allowed", allow_blank: true
+
+  def self.find_by(id)
+    self.where(id: id)
+  end
+  
 end

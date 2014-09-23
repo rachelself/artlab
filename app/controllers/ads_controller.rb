@@ -2,6 +2,20 @@ class AdsController < ApplicationController
 
   before_action :load_ad_creator, only: [:show]
 
+  def index
+    if params[:filter].present?
+      @ad_tags = AdTag.tagged_with(params[:filter][:tag_id])
+      @ads = []
+      @ad_tags.each do |ad_tag|
+        @ads << Ad.find_by(ad_tag.ad_id)
+      end
+      @ads = @ads[0]
+    else
+      @ads = Ad.all
+    end
+    @ads
+  end
+
   def new
     @ad = Ad.new
   end
