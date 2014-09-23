@@ -5,11 +5,16 @@
 * User authentication (create account)
 * User authentication (login)
 * User resets password
+* View profile
 * Edit profile
 * Add a new gallery
-* Add new items to a gallery (in progress)
+* Add photos to a gallery
 * Create a new ad
 * Edit an ad
+* View all users
+* Filter users by tag
+* View all ads
+* Filter ads by tag
 * View items in a gallery (need user story)
 * Edit a gallery (need user story)
 * Delete an item from a gallery (need user story)
@@ -18,7 +23,7 @@
 * Create a new active collaboration (need user story)
 * View your (ad) invitations (need user story)
 * View your collaborations (need user story)
-* View all ads (need user story)
+
 * View another artist's collaboration (need user story)
 * Follow an artist (need user story)
 * Unfollow an artist (need user story)
@@ -103,6 +108,16 @@ to better represent my work online.
   * valid location should be correct address formatting (per field)
   * valid profile photo should have PNG or JPG file extension
 
+## View profile
+
+As an artist,
+I want to view my profile,
+to make sure it's looking good.
+
+** Usage: **
+* Sign in
+* On user dashboard, click link `View Profile`
+
 ## Add a gallery
 
 As an artist,
@@ -128,14 +143,11 @@ in order to show off my talent.
 
 ** Usage: **
 * Sign in
-* On user dashboard, click link `Galleries`
-* Click link `Add Photos`
+* On user dashboard, click link `Upload Photos`
 * Upload an image file
 * Enter a caption
-* Click `Add Another Photo`
-* Upload an image file
-* Enter a caption
-* Click `Save`
+* Select a gallery
+* Click `Upload Photos`
 
 ** Acceptance Criteria: **
 * Artist is currently logged in
@@ -143,6 +155,7 @@ in order to show off my talent.
   * valid photo file type should be .png, .jpg, .jpeg, or .gif
   * valid caption must contain letters
   * valid caption must be length < 30
+  * valid if gallery selected
 
 ## Create a new ad
 
@@ -191,3 +204,47 @@ to better represent the project I want to collaborate on.
   * valid description must contain letters
   * valid description must be length < 500
   * valid photo file type should be .png, .jpg, .jpeg, or .gif
+
+## View all users
+
+As an artist,
+I want to browse all the other artist users,
+to look for someone I may want to collaborate with.
+
+** Usage: **
+* Sign in
+* On user dashboard, click link `Users`
+
+## Filter users by tag
+
+As an artist,
+I want to filter artists by tag
+so I can quickly find relevant talent I may want to collaborate with.
+
+** Usage: **
+* Sign in
+* Click `Users`
+* Select `Painting` from Tags
+* Click `Search`
+
+## View all ads
+
+As an artist,
+I want to browse all the ads,
+to look for someone already looking for collaboration.
+
+** Usage: **
+* Sign in
+* On user dashboard, click link `Projects`
+
+## Filter ads by tag
+
+As an artist,
+I want to filter ads by tag
+so I can quickly find relevant projects I may want to collaborate on.
+
+** Usage: **
+* Sign in
+* Click `Projects`
+* Select `Painting` from Tags
+* Click `Search`
