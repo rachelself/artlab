@@ -1,7 +1,35 @@
+/* === Logo === */
+
+.logo{
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.5em;
+}
+
 /* === Typography === */
 
-// @import url(http://fonts.googleapis.com/css?family=Fredericka+the+Great);
-// .logo{
-//   font-family: 'Fredericka the Great', cursive;
-//   font-size: 1.75em;
-// }
+@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville|Lato:300,400);
+
+$lato: 'Lato', sans-serif;
+$libre: 'Libre Baskerville', serif;
+$l300: 300;
+$l400: 400;
+
+h1, h3{
+  font-family: $libre;
+}
+
+h2{
+  font-family: $lato;
+  font-weight: $l400;
+}
+
+/* === General === */
+
+html,body{
+  background-image: url(squairy_light_@2X.png);
+  background-repeat: repeat;
+  min-height: 100%;
+  background-size: 300px;
+  margin: 0;
+  padding: 0;
+}

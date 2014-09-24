@@ -1,3 +1,124 @@
+/* == General == */
+
+$green          : #4b8933;
+$forest         : #0d3d07;
+$blue           : #255f97;
+$orange         : #f08a24;
+$purple         : #2f125e;
+
+/* === Home Page === */
+
+// Small Screens
+@media only screen {  /* Define mobile styles */
+  .header-image{
+    height: 150px;
+  }
+  .header-image-text{
+    h1{
+      font-size: 2.5em;
+    }
+  }
+}
+
+@media only screen and (max-width: 30em){
+  .header-image{
+    height: 100px;
+  }
+  .header-image-text{
+    h1{
+      font-size: 2em;
+    }
+  }
+}
+
+// Small Screens
+@media only screen and (min-width: 40.063em){ /* max-width 640px */
+  .header-image{
+    height: 150px;
+  }
+  .header-image-text{
+    h1{
+      font-size: 2.5em;
+    }
+  }
+}
+
+/* max-width 640px */
+@media only screen and (min-width: 40.063em) { /* min-width 641px, medium screens */
+  .header-image{
+    height: 200px;
+  }
+  .header-image-text{
+    h1{
+      font-size: 3em;
+      padding: 0.5em;
+    }
+  }
+}
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {  /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+  .header-image{
+    height: 250px;
+  }
+  .header-image-text{
+    h1{
+      padding: 0.25em;
+      font-size: 3.25em;
+    }
+  }
+}
+
+// Large screens
+@media only screen and (min-width: 64.063em) {  /* min-width 1025px, large screens */
+  .header-image{
+    height: 300px;
+  }
+  .header-image-text{
+    h1{
+      font-size: 4em;
+    }
+    padding: 1em;
+  }
+}
+
+@media only screen and (min-width: 64.063em) and (max-width: 90em) {  /* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */
+  .header-image{
+    height: 300px;
+  }
+  .header-image-text{
+    h1{
+      font-size: 4em;
+    }
+  }
+}
+
+// XLarge screens
+@media only screen and (min-width: 90.063em) {  /* min-width 1441px, xlarge screens */
+  .header-image{
+    height: 400px;
+  }
+  .header-image-text{
+    h1{
+      font-size: 5em;
+    }
+  }
+}
+
+.header-image{
+  .header-image-text{
+    height: 100%;
+  }
+  .header-image-banner{
+    background-image: url(artist-home-banner-1.png);
+    background-size: cover;
+    height: 100%;
+  }
+  .tagline{
+    color: white;
+  }
+}
+
+/* === Dashboard === */
 .panel h1{
   display: inline-block;
 }
@@ -6,14 +127,66 @@
   margin-left: 0.5em;
 }
 
-.top-bar-section li.active:not(.has-form) a:not(.button){
-  background-color: #555;
-}
-
 .bio{
   display: block;
 }
 
 li.tags{
   display: inline-block;
+}
+
+/* === Navigation Overrides === */
+
+@media only screen and (min-width: 40.063em){  /* min-width 641px, use when QAing tablet-only issues */
+  .top-bar-section ul li:nth-child(6){
+    background: none;
+    background-color: none;
+  }
+}
+
+@media only screen and (min-width: 40.063em) and (max-width: 650px){  /* min-width 641px, use when QAing tablet-only issues */
+  .top-bar.show-for-medium-up .top-bar-section ul {
+    width: 100%;
+  }
+  .top-bar-section ul li:nth-child(6){
+    background: #4b8933;
+    background-color: #4b8933;
+  }
+}
+
+/* == Sections == */
+section.showcase, section.collaborate{
+  width: 100%;
+
+  h3{
+    color: $blue;
+    padding: 0.5em;
+    margin-bottom: 1em;
+  }
+}
+
+section.join{
+  width: 100%;
+  margin-bottom: 0;
+  margin-top: 2em;
+  .band{
+    background-color: $blue;
+    height: 10em;
+    position: relative;
+    bottom: 0;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+
+    .columns.small-12.medium-5.medium-offset-4.large-4{
+      padding: 2em 2em 0 2em;
+      h3{
+        color: white;
+      }
+    }
+  }
+}
+
+.example-galleries li{
+  list-style: none;
 }
