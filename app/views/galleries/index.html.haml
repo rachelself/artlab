@@ -1,19 +1,18 @@
 .panel.row
   %h1 Galleries
-  %hr
+
 - if @galleries.nil?
   .panel
     %p No galleries found.
 - else
   - @galleries.each do |gallery|
     .gallery.panel.row
-
       - if gallery.photos.present?
         .cover.left
           = image_tag gallery.photos.first.image.url(:thumb), class: "th, gallery-cover"
         .info.columns.small-12.medium-6.large-6
           %h3
-            = gallery.title
+            = link_to gallery.title
           %h5
             = gallery.description
           .thumbs

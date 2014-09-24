@@ -19,13 +19,13 @@
     =render partial: "users/galleries"
 
 .large-6.medium-6.small-12.columns
-  .user_ads.panel.callout.radius.columns
+  .user_ads.panel.radius.columns
     %h1.subheader My Ads
     = link_to "New Ad", new_ad_path, class: "button tiny radius right"
     =render partial: "users/ads"
-  .user_invitations.panel.callout.radius.columns
+  .user_invitations.panel.radius.columns
     %h1.subheader My Invitations
     %p You have no invitations.
-  .user_collaborations.panel.callout.radius.columns
+  .user_collaborations.panel.radius.columns
     %h1.subheader My Collaborations
     %p You have no active collaborations.

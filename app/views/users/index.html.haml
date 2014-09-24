@@ -8,7 +8,7 @@
       .user-result.panel
         = image_tag user.profile_image.url(:small_thumb), class: "th left profile-pic"
         %h3
-          = "#{user.first_name} " + "#{user.last_name}"
+          = link_to "#{user.first_name} " + "#{user.last_name}"
         %p= user.bio
         - if user.tags.present?
           %li.tags

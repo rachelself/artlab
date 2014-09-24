@@ -6,6 +6,62 @@ $blue           : #255f97;
 $orange         : #f08a24;
 $purple         : #2f125e;
 
+html,body{
+  background-image: url(squairy_light_@2X.png);
+  background-repeat: repeat;
+  min-height: 100%;
+  background-size: 300px;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* === Typography === */
+
+@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville|Lato:300,400);
+
+$lato: 'Lato', sans-serif;
+$libre: 'Libre Baskerville', serif;
+$l300: 300;
+$l400: 400;
+
+h1, h3{
+  font-family: $libre;
+}
+
+h2{
+  font-family: $lato;
+  font-weight: $l400;
+}
+
+
+/* === Logo === */
+
+.logo{
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.5em;
+}
+
+
+/* === Navigation Overrides === */
+
+@media only screen and (min-width: 40.063em){  /* min-width 641px, use when QAing tablet-only issues */
+  .top-bar-section ul li:nth-child(6){
+    background: none;
+  }
+}
+
+@media only screen and (min-width: 40.063em) and (max-width: 650px){  /* min-width 641px, use when QAing tablet-only issues */
+  .top-bar.show-for-medium-up .top-bar-section ul {
+    width: 100%;
+  }
+  .top-bar-section ul li:nth-child(6){
+    background-color: #4b8933;
+
+  }
+}
+
+
 /* === Home Page === */
 
 // Small Screens
@@ -31,7 +87,6 @@ $purple         : #2f125e;
   }
 }
 
-// Small Screens
 @media only screen and (min-width: 40.063em){ /* max-width 640px */
   .header-image{
     height: 150px;
@@ -43,7 +98,7 @@ $purple         : #2f125e;
   }
 }
 
-/* max-width 640px */
+// Medium screens
 @media only screen and (min-width: 40.063em) { /* min-width 641px, medium screens */
   .header-image{
     height: 200px;
@@ -118,50 +173,16 @@ $purple         : #2f125e;
   }
 }
 
-/* === Dashboard === */
-.panel h1{
-  display: inline-block;
-}
 
-.button{
-  margin-left: 0.5em;
-}
+/* == Homepage Sections == */
 
-.bio{
-  display: block;
-}
-
-li.tags{
-  display: inline-block;
-}
-
-/* === Navigation Overrides === */
-
-@media only screen and (min-width: 40.063em){  /* min-width 641px, use when QAing tablet-only issues */
-  .top-bar-section ul li:nth-child(6){
-    background: none;
-    background-color: none;
-  }
-}
-
-@media only screen and (min-width: 40.063em) and (max-width: 650px){  /* min-width 641px, use when QAing tablet-only issues */
-  .top-bar.show-for-medium-up .top-bar-section ul {
-    width: 100%;
-  }
-  .top-bar-section ul li:nth-child(6){
-    background: #4b8933;
-    background-color: #4b8933;
-  }
-}
-
-/* == Sections == */
 section.showcase, section.collaborate{
   width: 100%;
 
   h3{
     color: $blue;
     padding: 0.5em;
-    margin-bottom: 1em;
+    margin: 1em 0;
   }
 }
 
@@ -189,4 +210,52 @@ section.join{
 
 .example-galleries li{
   list-style: none;
+}
+
+
+/* === Dashboard === */
+
+.panel h1{
+  display: inline-block;
+}
+
+.button{
+  margin-left: 0.5em;
+}
+
+.bio{
+  display: block;
+}
+
+li.tags{
+  display: inline-block;
+}
+
+
+/* == Ad Show Page == */
+
+.tags p, .tags a{
+  display: inline-block;
+}
+
+.ad_creator_image{
+  margin-right: 0.75em;
+}
+
+
+/* == Forms == */
+
+.local-only .radio_buttons .radio {
+  display: inline-block;
+  margin: 0.5em;
+  input{
+    margin-right: 0.5em;
+  }
+}
+
+
+/* == Search == */
+
+.profile-pic, .project-photo{
+  margin-right: 1em;
 }
