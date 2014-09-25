@@ -6,7 +6,7 @@
 #
 # ** Usage: **
 # * Sign in
-# * On user dashboard, click link `Projects`
+# * On user dashboard, click link `Ads`
 #
 # ## Filter ads by tag
 #
@@ -16,7 +16,7 @@
 #
 # ** Usage: **
 # * Sign in
-# * Click `Projects`
+# * Click `Ads`
 # * Select `Painting` from Tags
 # * Click `Search`
 
@@ -46,7 +46,7 @@ feature "User searches ads" do
       click_on 'Sign in'
     end
     within(".show-for-medium-up") do
-      click_on 'Projects'
+      click_on 'Ads'
     end
   end
 

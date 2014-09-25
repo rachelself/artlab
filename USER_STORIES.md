@@ -236,7 +236,7 @@ to look for someone already looking for collaboration.
 
 ** Usage: **
 * Sign in
-* On user dashboard, click link `Projects`
+* On user dashboard, click link `Ads`
 
 ## Filter ads by tag
 
@@ -246,7 +246,7 @@ so I can quickly find relevant projects I may want to collaborate on.
 
 ** Usage: **
 * Sign in
-* Click `Projects`
+* Click `Ads`
 * Select `Painting` from Tags
 * Click `Search`
 
