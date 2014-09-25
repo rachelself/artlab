@@ -5,3 +5,20 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+tag_list = [
+  ["Fibers"],
+  ["Painting"],
+  ["Photography"],
+  ["Pottery & Ceramics"],
+  ["Sculpture"],
+  ["Jewelry"],
+  ["Metalworking"],
+  ["Woodworking"],
+  ["Textiles"],
+  ["Calligraphy"]
+]
+
+tag_list.each do |name|
+  Tag.create(name: name)
+end
