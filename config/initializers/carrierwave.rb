@@ -9,7 +9,7 @@ CarrierWave.configure do |config|
     config.storage = :fog
     config.fog_credentials = {
       :provider               => 'AWS',                        # required
-      :aws_access_key_id      => ENV['AWS_KEY_ID'],            # required
+      :aws_access_key_id      => ENV['ACCESS_KEY_ID'],         # required
       :aws_secret_access_key  => ENV['SECRET_ACCESS_KEY'],     # required
     }
 
