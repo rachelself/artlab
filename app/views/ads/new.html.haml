@@ -1,7 +1,7 @@
-.row
+.row.panel
   = minimal_form_for(@ad, url: ads_path, method: 'post', html: { multipart: true }) do |f|
     .row.collapse
-      %h1= "New Ad"
+      %h1.form-header= "New Ad"
     .row
       .large-12.columns
         .row.collapse.prefix-radius
@@ -29,5 +29,5 @@
             %span.prefix Tags
           .small-9.columns
             = f.association :tags, collection: Tag.all, required: true, as: :select
-          = f.submit "Create Ad", class: "button radius right"
-          = link_to "Discard Changes", dashboard_path, class: "button radius secondary right"
+          = f.submit "Create Ad", class: "button radius left"
+          = link_to "Cancel", dashboard_path, class: "button radius secondary left"

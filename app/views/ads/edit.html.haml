@@ -1,7 +1,7 @@
-.row
+.row.panel
   = minimal_form_for(@ad, method: 'patch', html: { multipart: true }) do |f|
     .row.collapse
-      %h1= "Edit Your " + @ad.title + " Ad"
+      %h1.form-header= "Edit Your " + @ad.title + " Ad"
     .row
       .large-12.columns
         .row.collapse.prefix-radius
@@ -14,17 +14,14 @@
             %span.prefix Description
           .small-9.columns
             = f.input :description, hint: "500 character limit"
-        .row.collapse.prefix-radius
+        .row.collapse.prefix-radius.project-upload-field
           .small-3.columns
             %span.prefix Project Photo
           .small-9.columns
             = f.input :project_photo, as: "file"
             - if @ad.project_photo.present?
-              = image_tag(@ad.project_photo.url(:thumb))
-              -# .small-3.columns
-              -#   = f.input :remove_project_photo, as: :boolean, checked_value: true, unchecked_value: false
-              -#   %span Remove Project Photo
-              -#
+              %p.super Currently:
+              = image_tag @ad.project_photo.url(:small_thumb), class: "th project-preview"
             = f.hidden_field :project_photo_cache
         .row.collapse.prefix-radius
           .small-3.columns
@@ -36,57 +33,5 @@
             %span.prefix Tags
           .small-9.columns
             = f.association :tags, collection: Tag.all, required: true, as: :select
-          = f.submit "Save Changes", class: "button radius right"
-          = link_to "Discard Changes", dashboard_path, class: "button radius secondary right"
-
--# .row
--#   = minimal_form_for(@user, url: update_profile_path, method: 'patch', html: { multipart: true }) do |f|
--#     .row.collapse
--#       %h1= "Edit Profile"
--#     .row
--#       .large-12.columns
--#         .row.collapse.prefix-radius
--#           .small-3.columns
--#             %span.prefix First Name
--#           .small-9.columns
--#             = f.input :first_name
--#         .row.collapse.prefix-radius
--#           .small-3.columns
--#             %span.prefix Last Name
--#           .small-9.columns
--#             = f.input :last_name
--#         .row.collapse.prefix-radius
--#           .small-3.columns
--#             %span.prefix Bio
--#           .small-9.columns
--#             = f.input :bio, hint: "Must be less than 500 characters"
--#         .row.collapse.prefix-radius
--#           .small-3.columns
--#             %span.prefix Profile Picture
--#           .small-9.columns
--#             = f.input :profile_image, label: "Profile Picture"
--#           - if current_user.profile_image.present?
--#             = image_tag(@user.profile_image.url(:thumb))
--#           = f.hidden_field :profile_image_cache
--#         .row.collapse.prefix-radius
--#           .small-3.columns
--#             %span.prefix Tags
--#           .small-9.columns
--#             = f.association :tags, collection: Tag.all, required: true, as: :select
--#           = f.submit "Save Changes", class: "button radius right"
--#           = link_to "Discard Changes", dashboard_path, class: "button radius secondary right"
-
-
--# %h1= "Edit Your " + @ad.title + " Ad"
--#
--# = simple_form_for(@ad, method: 'patch', html: { multipart: true }) do |f|
--#   = f.input :title
--#   = f.input :description, hint: "500 character limit"
--#   = f.input :project_photo, label: "Project Photo", as: "file"
--#   - if @ad.project_photo.present?
--#     = image_tag(@ad.project_photo.url(:thumb))
--#     = f.input :remove_project_photo, as: :boolean, checked_value: true, unchecked_value: false
--#   = f.hidden_field :project_photo_cache
--#   = f.input :local_only, as: :boolean, checked_value: true, unchecked_value: false
--#   = f.association :tags, as: :select
--#   = f.submit "Save Changes"
+          = f.submit "Save Changes", class: "button radius left"
+          = link_to "Discard Changes", dashboard_path, class: "button radius secondary left"

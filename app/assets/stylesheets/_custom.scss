@@ -301,11 +301,20 @@ li.tags{
   }
 }
 
-h1.authenticate{
+h1.authenticate, h1.form-header{
   color: $blue;
   padding: 0.5em 0;
 }
 
+.profile-preview, .project-preview{
+  margin-bottom: 1em;
+}
+
+p.super{
+  font-family: $lato;
+  font-weight: $l300;
+  font-style: $italic;
+}
 
 /* == Search == */
 
