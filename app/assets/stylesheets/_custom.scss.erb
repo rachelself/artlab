@@ -7,7 +7,7 @@ $orange         : #f08a24;
 $purple         : #2f125e;
 
 html,body{
-  background-image: url(squairy_light_@2X.png);
+  background-image: url(<%= asset_path 'squairy_light_@2X.png' %>);
   background-repeat: repeat;
   min-height: 100%;
   background-size: 300px;
@@ -175,7 +175,7 @@ h5{
     height: 100%;
   }
   .header-image-banner{
-    background-image: url(artist-home-banner-1.png);
+    background-image: url(<%= asset_path 'artist-home-banner-1.png' %>);
     background-size: cover;
     height: 100%;
   }
@@ -207,7 +207,7 @@ section.join{
         rgba($blue, 0.7),
         rgba($blue, 0.9)
       ),
-      url(white_wall_@2X.png);
+      url(<%= asset_path 'white_wall_@2X.png' %>);
 
     height: 10em;
     position: relative;
