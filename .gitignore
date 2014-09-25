@@ -19,3 +19,6 @@
 coverage/*
 public/uploads
 notes.md
+
+# Ignore application configuration
+/config/application.yml
