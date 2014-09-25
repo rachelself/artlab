@@ -1,7 +1,7 @@
-.row
+.row.panel
   = minimal_form_for(@gallery, url: galleries_path, method: 'post') do |f|
     .row.collapse
-      %h1= "New Gallery"
+      %h1.form-header= "New Gallery"
     .row
       .large-12.columns
         .row.collapse.prefix-radius
@@ -14,4 +14,5 @@
             %span.prefix Description
           .small-9.columns
             = f.input :description, placeholder: "About these paintings..."
-          = f.submit "Create Gallery", class: "button radius right"
+          = f.submit "Create Gallery", class: "button radius left"
+          = link_to "Cancel", dashboard_path, class: "button radius secondary left"

@@ -14,7 +14,7 @@
     = "No bio added yet."
 
 - if current_user.tags.present?
-  %li.bio
+  %li.tags
     %strong= "Tagged: "
   - current_user.tags.each do |tag|
     = link_to "#{tag.name} "

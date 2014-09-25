@@ -1,18 +1,18 @@
-%table
-  %thead
-    %tr
-      %th Project Photo
-      %th Title
-      %th Date Created
-  %tbody
-  - if current_user.ads.present?
-    - current_user.ads.each do |ad|
+- if current_user.ads.present?
+  %table
+    %thead
       %tr
-        %td
-          = image_tag ad.project_photo.url(:small_thumb)
-        %td
-          = link_to ad.title, ad_path(ad)
-        %td
-          = ad.created_at.strftime("%m/%d/%Y")
-  - else
-    %p You haven't created any ads yet!
+        %th Project Photo
+        %th Title
+        %th Date Created
+    %tbody
+      - current_user.ads.each do |ad|
+        %tr
+          %td
+            = image_tag ad.project_photo.url(:small_thumb)
+          %td
+            = link_to ad.title, ad_path(ad)
+          %td
+            = ad.created_at.strftime("%m/%d/%Y")
+- else
+  %p You haven't created any ads yet!

@@ -1,7 +1,7 @@
-.row
+.row.panel
   = minimal_form_for(@user, url: update_profile_path, method: 'patch', html: { multipart: true }) do |f|
     .row.collapse
-      %h1= "Edit Profile"
+      %h1.form-header= "Edit Profile"
     .row
       .large-12.columns
         .row.collapse.prefix-radius
@@ -24,13 +24,14 @@
             %span.prefix Profile Picture
           .small-9.columns
             = f.input :profile_image, label: "Profile Picture"
-          - if current_user.profile_image.present?
-            = image_tag(@user.profile_image.url(:thumb))
-          = f.hidden_field :profile_image_cache
+            - if current_user.profile_image.present?
+              %p.super Currently:
+              = image_tag @user.profile_image.url(:small_thumb), class: "th profile-preview"
+            = f.hidden_field :profile_image_cache
         .row.collapse.prefix-radius
           .small-3.columns
             %span.prefix Tags
           .small-9.columns
             = f.association :tags, collection: Tag.all, required: true, as: :select
-          = f.submit "Save Changes", class: "button radius right"
-          = link_to "Discard Changes", dashboard_path, class: "button radius secondary right"
+          = f.submit "Save Changes", class: "button radius left"
+          = link_to "Discard Changes", dashboard_path, class: "button radius secondary left"

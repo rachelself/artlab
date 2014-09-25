@@ -37,7 +37,7 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
   end
 
   version :small_thumb, :from_version => :thumb do
-    process :resize_and_pad => [60, 60]
+    process :resize_to_fill => [60, 60]
   end
 
 

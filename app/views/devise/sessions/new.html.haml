@@ -1,11 +1,11 @@
-%h2 Sign In
+.row.panel
+  %h1.authenticate Sign In
 
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :email, required: false, autofocus: true
-    = f.input :password, required: false
-    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-  .form-actions
-    = f.button :submit, "Sign in"
--# = render "devise/shared/links"
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :email, required: false, autofocus: true
+      = f.input :password, required: false
+      = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+    .form-actions
+      = f.button :submit, "Sign in", class: "button radius left"

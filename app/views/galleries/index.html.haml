@@ -1,17 +1,22 @@
-%h1 Galleries
-%hr
+.panel.row
+  %h1 Galleries
+
 - if @galleries.nil?
-  %p No galleries found.
+  .panel
+    %p No galleries found.
 - else
   - @galleries.each do |gallery|
-    .gallery
+    .gallery.panel.row
       - if gallery.photos.present?
-        .cover
+        .cover.left
           = image_tag gallery.photos.first.image.url(:thumb), class: "th, gallery-cover"
+      .info.columns.small-12.medium-6.large-6
+        %h3
+          = link_to gallery.title
+        %h5
+          = gallery.description
         .thumbs
-          - gallery.photos.each do |photo|
-            = image_tag photo.image.url(:small_thumb), class: "th gallery-photo"
-      %h3
-        = gallery.title
-      %h5
-        = gallery.description
+          %ul.small-block-grid-3.medium-block-grid-5.large-block-grid-6
+            - gallery.photos.each do |photo|
+              %li
+                = image_tag photo.image.url(:small_thumb), class: "th gallery-photo"
