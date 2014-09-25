@@ -1,8 +1,10 @@
 .row.panel
   .small-12.medium-12.large-12.columns
+    = link_to "Add Photos", new_photo_path, class: "show-for-medium-up button radius right"
+    = link_to "Add Photos", new_photo_path, class: "show-for-small-only button tiny radius right"
+
     %h1= @gallery.title
-    %h3.subheader= @gallery.description
-    -# = link_to "Add Photos", class: "button radius right"
+    %h4.subheader= @gallery.description
 
   - if @gallery.photos.present?
     %ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4

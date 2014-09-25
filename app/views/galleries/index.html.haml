@@ -10,13 +10,13 @@
       - if gallery.photos.present?
         .cover.left
           = image_tag gallery.photos.first.image.url(:thumb), class: "th, gallery-cover"
-        .info.columns.small-12.medium-6.large-6
-          %h3
-            = link_to gallery.title
-          %h5
-            = gallery.description
-          .thumbs
-            %ul.small-block-grid-3.medium-block-grid-5.large-block-grid-6
-              - gallery.photos.each do |photo|
-                %li
-                  = image_tag photo.image.url(:small_thumb), class: "th gallery-photo"
+      .info.columns.small-12.medium-6.large-6
+        %h3
+          = link_to gallery.title
+        %h5
+          = gallery.description
+        .thumbs
+          %ul.small-block-grid-3.medium-block-grid-5.large-block-grid-6
+            - gallery.photos.each do |photo|
+              %li
+                = image_tag photo.image.url(:small_thumb), class: "th gallery-photo"
