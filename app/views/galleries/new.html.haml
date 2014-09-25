@@ -1,5 +1,5 @@
 .row.panel
-  = minimal_form_for(@gallery, url: galleries_path, method: 'post') do |f|
+  = simple_form_for(@gallery, url: galleries_path, method: 'post') do |f|
     .row.collapse
       %h1.form-header= "New Gallery"
     .row
