@@ -1,10 +1,25 @@
-# ArtistConnect (working title)
+# artlab
 
-An app to help visual artists network and collaborate on projects.
+Artlab is a web application for helping fine artists connect with each other for the purpose of collaborating on projects.
+As an artist, you can set up your own profile, create photo galleries, and add tags to your account to help others find you.
+Reach out to others by publishing an ad for an open project you'd like to collaborate on, or browse ads for what suits you.
 
-## Technologies / Dependencies
+## Dependencies
 
-  * Ruby 2.1.1
+  * Ruby 2.1.2
+  * Rails 4.1.5
+
+## Technologies & Methodologies
+
+  * Haml
+  * Sass
+  * Foundation 5
+  * RSpec/Capybara testing suite
+  * Postgres database
+  * Devise
+  * Carrierwave
+  * AWS S3 storage for file uploads
+  * TDD
 
 ## License
 
